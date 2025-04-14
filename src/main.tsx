@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import './index.css';
 import Login from './pages/Login';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
