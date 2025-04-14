@@ -26,7 +26,7 @@ function Home() {
     ]
     const date = new Date();
     date.setDate(date.getDate() + 7);
-    const [startDate, setStartDate] = useState<Date | null>(new Date());
+    const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState(date);
     const [values, setValues] = useState([0, 50]);
     const [inputs, setInputs] = useState(['$0', '$50']);
