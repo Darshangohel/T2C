@@ -26,7 +26,7 @@ function Home() {
     ]
     const date = new Date();
     date.setDate(date.getDate() + 7);
-    const [startDate, setStartDate] = useState(new Date()) | null;
+    const [startDate, setStartDate] = useState<Date | null>(new Date());
     const [endDate, setEndDate] = useState(date);
     const [values, setValues] = useState([0, 50]);
     const [inputs, setInputs] = useState(['$0', '$50']);
@@ -194,7 +194,7 @@ function Home() {
                                                 </div>
                                                 <div className="">
                                                     <span className="">${hotel.rate} <small className="font-light">Nightly</small></span>
-                                                    <strong className="block">${hotel.rate*3} Total</strong>
+                                                    <strong className="block">$ {hotel.rate*3} Total</strong>
                                                 </div>
                                             </div>
                                         </div>
