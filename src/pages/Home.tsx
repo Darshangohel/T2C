@@ -26,7 +26,7 @@ function Home() {
     ]
     const date = new Date();
     date.setDate(date.getDate() + 7);
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date()) | null;
     const [endDate, setEndDate] = useState(date);
     const [values, setValues] = useState([0, 50]);
     const [inputs, setInputs] = useState(['$0', '$50']);
@@ -39,7 +39,7 @@ function Home() {
         ]);
       }, [values, isEditing]);
 
-    const formatDisplayValue = (value, isMax = false, isEditing = false) => {
+    const formatDisplayValue = (value: any, isMax = false, isEditing = false) => {
         if (!isEditing) {
             if (isMax && value > 1000) return '$1,000+';
             if (value === 1000) return '$1,000+';
@@ -47,12 +47,12 @@ function Home() {
         return `$${value.toLocaleString()}`;
     };
 
-    const parseInput = (value) => {
+    const parseInput = (value: any) => {
         const numeric = value.replace(/[^\d]/g, '');
         return numeric ? parseInt(numeric, 10) : '';
     };
 
-    const handleInputChange = (index, rawValue) => {
+    const handleInputChange = (index: any, rawValue: any) => {
         const parsed = parseInput(rawValue);
 
         // Update input visually
@@ -78,7 +78,7 @@ function Home() {
         setValues(newValues);
     };
     
-    const handleInputFocus = (index) => {
+    const handleInputFocus = (index: any) => {
     setIsEditing((prev) => {
         const updated = [...prev];
         updated[index] = true;
@@ -86,7 +86,7 @@ function Home() {
     });
     };
     
-    const handleInputBlur = (index) => {
+    const handleInputBlur = (index: any) => {
     setIsEditing((prev) => {
         const updated = [...prev];
         updated[index] = false;
