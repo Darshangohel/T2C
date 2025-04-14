@@ -26,7 +26,7 @@ function Home() {
     ]
     const date = new Date();
     date.setDate(date.getDate() + 7);
-    const [startDate, setStartDate] = useState<Date | null>(null);
+    const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(date);
     const [values, setValues] = useState([0, 50]);
     const [inputs, setInputs] = useState(['$0', '$50']);
@@ -142,7 +142,7 @@ function Home() {
                                 endDate={endDate}
                                 minDate={startDate}
                                 className="focus:outline-0 font-bold w-full"
-                                onChange={(date) => setEndDate(date)}
+                                onChange={(date) => date && setEndDate(date)}
                                 popperPlacement="bottom-start"
                                 renderDayContents={(day) => <span>{day}</span>}
                             />
