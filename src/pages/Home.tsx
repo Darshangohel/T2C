@@ -75,7 +75,7 @@ function Home() {
 
         const newValues = [...values];
         newValues[index] = clamped;
-        setValues(newValues);
+        setValues(newValues as [number, number]);
     };
     
     const handleInputFocus = (index: any) => {
@@ -98,9 +98,9 @@ function Home() {
 
     if (index === 1) clamped = Math.min(clamped, 1000);
 
-    const newValues = [...values];
+    const newValues: [number, number] = [values[0], clamped];
     newValues[index] = clamped;
-    setValues(newValues);
+    setValues(newValues as [number, number]);
     };
     
     return (
