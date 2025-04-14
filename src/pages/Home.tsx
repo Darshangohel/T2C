@@ -28,7 +28,7 @@ function Home() {
     date.setDate(date.getDate() + 7);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(date);
-    const [values, setValues] = useState([0, 50]);
+    const [values, setValues] = useState<[number, number]>([0, 50]);
     const [inputs, setInputs] = useState(['$0', '$50']);
     const [isEditing, setIsEditing] = useState([false, false]);
 
@@ -121,7 +121,7 @@ function Home() {
                                     startDate={startDate}
                                     endDate={endDate}
                                     className="focus:outline-0 font-bold w-full"
-                                    onChange={(date) => setStartDate(date)}
+                                    onChange={(date) => date && setStartDate(date)}
                                     popperPlacement="bottom-start"
                                     renderDayContents={(day) => <span>{day}</span>}
                                 />
@@ -194,7 +194,7 @@ function Home() {
                                                 </div>
                                                 <div className="">
                                                     <span className="">${hotel.rate} <small className="font-light">Nightly</small></span>
-                                                    <strong className="block">$ {hotel.rate*3} Total</strong>
+                                                    <strong className="block">${Number(hotel.rate)*3} Total</strong>
                                                 </div>
                                             </div>
                                         </div>
@@ -343,7 +343,7 @@ function Home() {
                                     min={0}
                                     max={1000}
                                     value={values}
-                                    onInput={setValues}
+                                    onInput={(val) => setValues(val as [number, number])}
                                 />
                                 <div className="flex px-2 -mx-4 mb-3">
                                     <div className="px-2">
