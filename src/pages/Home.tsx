@@ -123,7 +123,7 @@ function Home() {
                                     className="focus:outline-0 font-bold w-full"
                                     onChange={(date) => setStartDate(date)}
                                     popperPlacement="bottom-start"
-                                    renderDayContents={(day, date) => <span>{day}</span>}
+                                    renderDayContents={(day) => <span>{day}</span>}
                                 />
                             </Suspense>
                         </div>
@@ -144,7 +144,7 @@ function Home() {
                                 className="focus:outline-0 font-bold w-full"
                                 onChange={(date) => setEndDate(date)}
                                 popperPlacement="bottom-start"
-                                renderDayContents={(day, date) => <span>{day}</span>}
+                                renderDayContents={(day) => <span>{day}</span>}
                             />
                             </Suspense>
                         </div>
