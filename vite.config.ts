@@ -7,5 +7,5 @@ export default defineConfig({
   plugins: [
     react(), tailwindcss()
   ],
-  base: "/T2C"
+  base: process.evn.VITE_BASE_PATH || "/"
 })
