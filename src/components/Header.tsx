@@ -1,7 +1,6 @@
 import logo from "../assets/logo-white.png"
 import background from "../assets/bg.jpg"
 import SportLogo from "../assets/national-championships.png"
-import { Link } from "react-router-dom"
 
 const Header = () => {
     return (
