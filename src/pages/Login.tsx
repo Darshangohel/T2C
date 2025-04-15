@@ -39,6 +39,7 @@ const Login = () => {
     if (validateForm()) {
       // Handle login logic here
       console.log('Form submitted:', formData);
+      window.location.href= "/dashboard"
     }
   };
 
