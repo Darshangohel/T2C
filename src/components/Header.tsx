@@ -20,7 +20,7 @@ const Header = () => {
                     <div className="flex justify-center items-center">
                         <img src={SportLogo} alt="Sport Logo" className="w-50" />
                     </div>
-                    <div className="col-span-7 flex flex-col justify-center text-white">
+                    <div className="md:col-span-7 col-span-1 flex flex-col justify-center text-white">
                         <h3 className="block text-2xl font-bold uppercase">Wallyball National Chanpionship</h3>
                         <p className="font-extralight">Mon 05/02/2025 - Sat 05/10/2025 </p>
                     </div>
