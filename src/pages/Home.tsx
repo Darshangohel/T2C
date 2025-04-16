@@ -9,6 +9,7 @@ import HotelImage from "../assets/hotel-1.avif"
 import HotelImage2 from "../assets/hotel-2.avif"
 import HotelImage3 from "../assets/hotel-3.avif"
 import HotelImage4 from "../assets/hotel-4.avif"
+import Map from "../assets/map.png"
 import "./Home.css";
 
 function Home() {
@@ -153,6 +154,9 @@ function Home() {
     const [isVisibleFilter, setIsVisibleFilter] = useState(window.innerWidth >= 768);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
+    const[isVisibleMap, setIsVisibleMap] = useState(false);
+    const[filterPopup, setFilterPopup] = useState(false);
+
     useEffect(() => {
         const handleResize = () => {
           const isNowMobile = window.innerWidth < 768;
@@ -167,12 +171,23 @@ function Home() {
 
     const handleFilterClose = () => {
         setIsVisibleFilter(false);
+        setFilterPopup(false);
         document.body.classList.remove('overflow-hidden');
     }
 
     const handleFilterToggle = () => {
         setIsVisibleFilter(true)
         document.body.classList.add('overflow-hidden');
+    }
+
+    const handleMap = () => {
+        setIsVisibleMap(true);
+        document.body.classList.add('overflow-hidden');
+    }
+
+    const handleCloseMap = () => {
+        setIsVisibleMap(false)
+        document.body.classList.remove('overflow-hidden');
     }
     
     return (
@@ -261,6 +276,47 @@ function Home() {
                 )}
             </div>
             <div className="2xl:w-[1432px] xl:w-7xl lg:w-5xl w-auto px-4 mt-5 mx-auto">
+                <div className="flex justify-between pb-3">
+                    <div className="relative">
+                        Short By
+                        <select className="border border-gray-400 p-2 pr-6 rounded-sm ml-2 appearance-none">
+                            <option value="price-low-high">Price : Low to High</option>
+                            <option value="price-high-low">Price : High to Low</option>
+                            <option value="star-rating">Star Rating</option>
+                            <option value="airport-distance">Distance from Airport</option>
+                        </select>
+                        <svg className="absolute right-1 top-2 mt-1" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M16.44 9.146a.5.5 0 0 1 .706 0l.708.708a.5.5 0 0 1 0 .707l-5.147 5.146a1 1 0 0 1-1.414 0l-5.147-5.146a.5.5 0 0 1 0-.707l.708-.708a.5.5 0 0 1 .703-.003L12 13.586l4.44-4.44z"></path></svg>
+                    </div>
+                    <button onClick={handleMap} className="border border-gray-400 p-2 rounded-sm cursor-pointer flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="mr-2">
+                            <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/>
+                        </svg>
+                        View On Map
+                    </button>
+                </div>
+                {isVisibleMap && (
+                    <div className="fixed top-0 left-0 w-full h-full z-20">
+                        <div className="absolute p-3 bg-white w-full flex justify-between">
+                            <div className="flex items-center">
+                                <i className="p-2 hover:bg-blue-50 rounded-full cursor-pointer mr-2 text-blue-600" onClick={handleCloseMap}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                    </svg>
+                                </i>
+                                California, United States of America
+                            </div>
+                            <button onClick={() => filterPopup ? setFilterPopup(false) : setFilterPopup(true)} className="flex items-center cursor-pointer p-2 px-4 rounded-l-full rounded-r-full text-blue-600 hover:bg-blue-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="mr-2">
+                                    <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
+                                </svg>
+                                Filter
+                            </button>
+                        </div>
+                        {}
+                        <div className={`bg-gray-500/50 fixed left-0 top-0 w-full h-full ${filterPopup ? '' : 'hidden'}`} onClick={() => setFilterPopup(false)}></div>
+                        <img src={Map} alt="map" className="h-full w-full object-cover" />
+                    </div>
+                )}
                 <div className="flex">
                     <div className="xl:w-9/12 md:w-8/12 w-full px-5">
                         <div className="flex -ml-5 flex-wrap justify-between xl:flex-row flex-col -mr-5 md:-mr-0">
@@ -298,11 +354,16 @@ function Home() {
                         </div>
                     </div>
                     {isVisibleFilter && (
-                        <div className="xl:w-3/12 md:w-4/12 fixed md:static top-0 left-0 w-full h-full md:h-auto z-20 pb-15 pt-11 md:pt-0 md:pb-0 overflow-x-auto md:overflow-hidden bg-gray-100 md:bg-white">
-                            <div className="border border-gray-100 rounded-md bg-white px-4 py-3 pt-0 md:pt-3 overflow-hidden">
+                        <div className={` ${filterPopup ? 'md:z-40 md:fixed md:w-full top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] md:h-[75vh]' : 'md:z-0 md:static md:bg-white bg-gray-100 top-0 left-0 h-full md:h-auto '} md:overflow-hidden xl:w-3/12 md:w-4/12 fixed w-full z-20 pb-15 pt-11 md:pt-0 md:pb-0 overflow-x-auto`}>
+                            <div className={`border border-gray-100 rounded-md bg-white px-4 py-3 pt-0 md:pt-3 overflow-hidden ${filterPopup ? 'flex flex-col h-full' : ''}`}>
                                 <div className="header flex justify-between border-b-gray-200 md:pt-1 pb-3 border-b -mx-4 px-4 pt-3 -mt-1 md:mt-0 fixed md:static top-0 w-full md:w-auto bg-white z-20">
                                     <div className="flex items-center">
-                                        <span className="cursor-pointer md:hidden mr-4" onClick={handleFilterClose}>
+                                        <span className="cursor-pointer mr-4 md:hidden"  onClick={handleFilterClose}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                            </svg>
+                                        </span>
+                                        <span className={`cursor-pointer mr-4 ${filterPopup ? '' : 'md:hidden'}`} onClick={() => setFilterPopup(false)}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                                             </svg>
@@ -313,7 +374,7 @@ function Home() {
                                     </div>
                                     <a href="#">Clear all filter (3)</a>
                                 </div>
-                                <div className="bg-gray-100 -mx-4 px-4 -mb-4 pb-4">
+                                <div className={`bg-gray-100 -mx-4 px-4 -mb-4 pb-4 ${filterPopup ? 'grow overflow-y-auto' : ''}`}>
                                     <label htmlFor="roomType" className="pt-2 text-gray-900 block pb-1">Room Type</label>
                                     <ul className="flex flex-wrap px-3 -mx-4">
                                         {roomTypes.map((type, index)=>
@@ -424,6 +485,9 @@ function Home() {
                                             </li>
                                         )}
                                     </ul>
+                                </div>
+                                <div className={`p-3 -mx-4 bottom-0 -mb-3 flex border-t border-gray-300 bg-white ${filterPopup ? '' : 'hidden'}`}>
+                                    <button className="ml-auto px-4 py-2 bg-blue-950 text-white rounded-l-full rounded-r-full cursor-pointer" onClick={() => setFilterPopup(false)}>Done</button>
                                 </div>
                             </div>
                             <div className="p-3 fixed bottom-0 w-full flex border-t border-gray-300 bg-white md:hidden">

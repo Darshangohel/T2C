@@ -1,6 +1,7 @@
 import logo from "../assets/logo-white.png"
 import background from "../assets/bg.jpg"
 import SportLogo from "../assets/national-championships.png"
+import { Link } from "react-router-dom"
 
 const Header = () => {
     return (
@@ -9,9 +10,15 @@ const Header = () => {
                 <div className="pt-7 flex justify-between items-center pb-3">
                     <img src={logo} alt="Logo" className="w-30"/>
                     <ul className="flex">
-                        <li className="px-4"><a href="#" className="text-white">Hotel</a></li>
-                        <li className="px-4"><a href="#" className="text-white">Event</a></li>
-                        <li className="px-4"><a href="#" className="text-white">Sport</a></li>
+                        <li className="px-4">
+                            <Link to="/dashboard" className="text-white">Home</Link>
+                        </li>
+                        <li className="px-4">
+                            <Link to="/event" className="text-white">Event</Link>
+                        </li>
+                        <li className="px-4">
+                            <Link to="#" className="text-white">Sport</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
