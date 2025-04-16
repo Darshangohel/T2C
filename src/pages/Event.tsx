@@ -11,7 +11,11 @@ const Event = () => {
     useEffect(() => {
         document.body.classList.add("h-full");
         document.documentElement.classList.add("h-full");
-        document.querySelector("#root").classList.add("h-full");
+
+        const root = document.querySelector("#root");
+        if (root) {
+        root.classList.add("h-full");
+        }
     });
     return (
         <>
