@@ -35,7 +35,7 @@ const Event = () => {
         root.classList.add("h-full");
         }
         const handleClickOutside = (e: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
               setOpenDropdownId(null);
             }
           };
