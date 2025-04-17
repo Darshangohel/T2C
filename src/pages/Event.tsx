@@ -18,7 +18,7 @@ const Event = () => {
     const restaurantIcon = (<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="me-1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path fillRule="evenodd" d="M20 4.428c0-1.412-1.613-2.219-2.743-1.371A8.143 8.143 0 0 0 14 9.57V14a3 3 0 0 0 3 3h1v3.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V4.428zm-2 .608a6.143 6.143 0 0 0-2 4.535V14a1 1 0 0 0 1 1h1V5.036z" clipRule="evenodd"></path><path d="M4.347 3a.5.5 0 0 0-.497.45l-.515 5.152A4 4 0 0 0 7 12.988V20.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-7.512a4 4 0 0 0 3.665-4.386L12.15 3.45a.5.5 0 0 0-.498-.45h-1.005a.5.5 0 0 0-.497.55l.525 5.25a2 2 0 0 1-1.99 2.2h-1.37a2 2 0 0 1-1.99-2.2l.525-5.25A.5.5 0 0 0 5.352 3H4.347z"></path><path d="M7 3.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"></path></svg>);
     const washerIcon = (<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="me-1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path d="M9 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path><path fillRule="evenodd" d="M8 14a4 4 0 1 1 8 0 4 4 0 0 1-8 0zm4-2a2 2 0 0 0-1.414 3.414l2.828-2.828A1.994 1.994 0 0 0 12 12z" clipRule="evenodd"></path><path fillRule="evenodd" d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5zm3-1a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H7z" clipRule="evenodd"></path></svg>);
 
-    const menuItems = [{label : "Home", path : "/dashboard"}, {label : "Event", path : "/event"}, {label : "Reservations", path : "#"}];
+    const menuItems = [{label : "Home", path : "/dashboard", active: false}, {label : "Event", path : "/event", active: true}, {label : "Reservations", path : "#", active: false}];
 
     const [openDropdownId, setOpenDropdownId] = useState(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -37,6 +37,7 @@ const Event = () => {
         const handleClickOutside = (e: MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
               setOpenDropdownId(null);
+              setUserDropdownOpen(false);
             }
           };
         document.addEventListener('mousedown', handleClickOutside);
@@ -97,7 +98,7 @@ const Event = () => {
                         <ul>
                             {menuItems.map((item, index) => 
                                 <li className="px-1" key={index}>
-                                    <Link to={item.path} className="block hover:bg-blue-50 p-3 rounded-sm">{item.label}</Link>
+                                    <Link to={item.path} className={`block hover:bg-blue-50 p-3 rounded-sm ${item.active ? 'bg-blue-50' : ''}`}>{item.label}</Link>
                                 </li>
                             )}
                         </ul>
@@ -150,19 +151,21 @@ const Event = () => {
                                 <span>Max Lorem</span>
                                 <svg aria-hidden="true" fill="currentColor" className="mt-1 ml-1" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path d="M16.44 9.146a.5.5 0 0 1 .706 0l.708.708a.5.5 0 0 1 0 .707l-5.147 5.146a1 1 0 0 1-1.414 0l-5.147-5.146a.5.5 0 0 1 0-.707l.708-.708a.5.5 0 0 1 .703-.003L12 13.586l4.44-4.44z"></path></svg>
                                 {userDropdownOpen && (
-                                    <div className="absolute right-0 top-full mt-5 bg-white shadow-[0_0px_15px_rgba(0,0,0,0.15)] w-35 rounded-sm">
-                                        <ul>
-                                            <li className="px-3 py-2 cursor-pointer hover:bg-gray-100">Account</li>
-                                            <li className="px-3 py-2 cursor-pointer hover:bg-gray-100">Settings</li>
-                                            <li className="px-3 py-1"><hr className="border-gray-200" /></li>
-                                            <li className="px-3 py-2 cursor-pointer hover:bg-gray-100">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="inline-block align-text-bottom mr-1.5" viewBox="0 0 16 16">
-                                                    <path d="M7.5 1v7h1V1z"/>
-                                                    <path d="M3 8.812a5 5 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812"/>
-                                                </svg>
-                                                Logout
-                                            </li>
-                                        </ul>
+                                    <div ref={dropdownRef} className="absolute right-0 top-full mt-5 bg-white shadow-[0_0px_15px_rgba(0,0,0,0.15)] w-35 rounded-sm">
+                                        <Link to="#" className="px-3 py-2 cursor-pointer hover:bg-gray-100 block">
+                                            Account
+                                        </Link>
+                                        <Link to="#" className="px-3 py-2 cursor-pointer hover:bg-gray-100 block">
+                                            Settings
+                                        </Link>
+                                        <hr className="border-gray-200" />
+                                        <Link to="/" className="px-3 py-2 cursor-pointer hover:bg-gray-100 block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="inline-block align-text-bottom mr-1.5" viewBox="0 0 16 16">
+                                                <path d="M7.5 1v7h1V1z"/>
+                                                <path d="M3 8.812a5 5 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812"/>
+                                            </svg>
+                                            Logout
+                                        </Link>
                                     </div>
                                 )}
                             </div>
@@ -171,7 +174,7 @@ const Event = () => {
                     <div className="grow overflow-auto bg-slate-100 p-4">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center">
-                                <h2 className="text-xl font-bold">Events (42)</h2>
+                                <h2 className="text-xl font-bold">Events (18)</h2>
                                 <button className="py-1 px-3 rounded-sm cursor-pointer bg-white border border-gray-300 ml-5" onClick={handleFilterClick}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="inline-block -mt-0.5 mr-3" viewBox="0 0 16 16">
                                     <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
