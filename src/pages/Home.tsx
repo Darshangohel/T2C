@@ -189,6 +189,23 @@ function Home() {
         setIsVisibleMap(false)
         document.body.classList.remove('overflow-hidden');
     }
+
+    const [isPopupVisible, setPopupVisible] = useState(true);
+
+    const handleFilterPopup = () => {
+        if(filterPopup) {
+            setFilterPopup(false)
+        } else {
+            setFilterPopup(true)
+            setIsVisibleFilter(true);
+        }
+    }
+
+    const [sortValue, setSortValue] = useState('price-low-high');
+
+    const handleSortChange = (e: any) => {
+        setSortValue(e.target.value);
+    }
     
     return (
         <>
@@ -196,21 +213,17 @@ function Home() {
             <div className="2xl:w-[1432px] xl:w-7xl lg:w-5xl w-auto px-4 mx-auto relative -mt-15">
                 {isMobile && !isVisibleSearch && (
                     <div className="flex justify-between rounded-md shadow-[0_0_25px_rgba(0,0,0,0.25)] bg-white p-5 text-black relative z-20">
-                        <div className="pr-3">        
-                                <div onClick={() => setIsVisibleSearch(true)} className="border border-gray-300 p-3 rounded-md cursor-pointer">
+                        <div className="grow">
+                            <div onClick={() => setIsVisibleSearch(true)} className="border border-gray-300 p-3 rounded-md cursor-pointer flex justify-between items-center">
+                                <div>
                                     <p className="font-semibold md:text-lg text-base leading-5">South Tower Building</p>
-
                                     <p className="text-sm inline-block text-gray-500 pr-5">{dateStartText} - {dateEndText}</p>
                                     <p className="sm:inline-block hidden leading-0">&bull;</p>
                                     <p className="text-sm inline-block text-gray-500 sm:pl-5">4 Rooms</p>
                                 </div>
-                        </div>
-                        <div className="pl-3 flex items-center">
-                            <div onClick={handleFilterToggle} className="border border-gray-300 p-3 rounded-md flex items-center cursor-pointer h-full sm:h-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="mr-3" fill="currentColor" viewBox="0 0 16 16">
-                                    <path fillRule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
                                 </svg>
-                                Filters & Sort
                             </div>
                         </div>
                     </div>
@@ -277,16 +290,28 @@ function Home() {
             </div>
             <div className="2xl:w-[1432px] xl:w-7xl lg:w-5xl w-auto px-4 mt-5 mx-auto">
                 <div className="flex justify-between pb-3">
-                    <div className="relative">
-                        Short By
-                        <select className="border border-gray-400 p-2 pr-6 rounded-sm ml-2 appearance-none">
-                            <option value="price-low-high">Price : Low to High</option>
-                            <option value="price-high-low">Price : High to Low</option>
-                            <option value="star-rating">Star Rating</option>
-                            <option value="airport-distance">Distance from Airport</option>
-                        </select>
-                        <svg className="absolute right-1 top-2 mt-1" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path d="M16.44 9.146a.5.5 0 0 1 .706 0l.708.708a.5.5 0 0 1 0 .707l-5.147 5.146a1 1 0 0 1-1.414 0l-5.147-5.146a.5.5 0 0 1 0-.707l.708-.708a.5.5 0 0 1 .703-.003L12 13.586l4.44-4.44z"></path></svg>
-                    </div>
+                    {isMobile && !isVisibleSearch && (
+                        <div className="pl-3 flex items-center">
+                            <div onClick={handleFilterToggle} className="border border-gray-400 p-3 rounded-md flex items-center cursor-pointer h-full sm:h-auto">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="mr-3" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fillRule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
+                                </svg>
+                                Filters & Sort
+                            </div>
+                        </div>
+                    )}
+                    {!isMobile && isVisibleSearch && (
+                        <div className="relative">
+                            Sort By
+                            <select name="sort-by" value={sortValue} onChange={handleSortChange} className="border border-gray-400 p-2 pr-6 rounded-sm ml-2 appearance-none">
+                                <option value="price-low-high">Price : Low to High</option>
+                                <option value="price-high-low">Price : High to Low</option>
+                                <option value="star-rating">Star Rating</option>
+                                <option value="airport-distance">Distance from Airport</option>
+                            </select>
+                            <svg className="absolute right-1 top-2 mt-1" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path d="M16.44 9.146a.5.5 0 0 1 .706 0l.708.708a.5.5 0 0 1 0 .707l-5.147 5.146a1 1 0 0 1-1.414 0l-5.147-5.146a.5.5 0 0 1 0-.707l.708-.708a.5.5 0 0 1 .703-.003L12 13.586l4.44-4.44z"></path></svg>
+                        </div>
+                    )}
                     <button onClick={handleMap} className="border border-gray-400 p-2 rounded-sm cursor-pointer flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="mr-2">
                             <path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.5.5 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103M10 1.91l-4-.8v12.98l4 .8zm1 12.98 4-.8V1.11l-4 .8zm-6-.8V1.11l-4 .8v12.98z"/>
@@ -295,27 +320,75 @@ function Home() {
                     </button>
                 </div>
                 {isVisibleMap && (
-                    <div className="fixed top-0 left-0 w-full h-full z-20">
-                        <div className="absolute p-3 bg-white w-full flex justify-between">
-                            <div className="flex items-center">
-                                <i className="p-2 hover:bg-blue-50 rounded-full cursor-pointer mr-2 text-blue-600" onClick={handleCloseMap}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                    <>
+                        <div className="fixed top-0 left-0 w-full h-full z-20">
+                            <div className="absolute p-3 bg-white w-full flex justify-between">
+                                <div className="flex items-center">
+                                    <i className="p-2 hover:bg-blue-50 rounded-full cursor-pointer mr-2 text-blue-600" onClick={handleCloseMap}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                        </svg>
+                                    </i>
+                                    California, United States of America
+                                </div>
+                                <button onClick={handleFilterPopup} className="flex items-center cursor-pointer p-2 px-4 rounded-l-full rounded-r-full text-blue-600 hover:bg-blue-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="mr-2">
+                                        <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
                                     </svg>
-                                </i>
-                                California, United States of America
+                                    Filter
+                                </button>
                             </div>
-                            <button onClick={() => filterPopup ? setFilterPopup(false) : setFilterPopup(true)} className="flex items-center cursor-pointer p-2 px-4 rounded-l-full rounded-r-full text-blue-600 hover:bg-blue-50">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="mr-2">
-                                    <path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1z"/>
-                                </svg>
-                                Filter
-                            </button>
+                            <div className={`bg-gray-500/50 fixed left-0 top-0 w-full h-full ${filterPopup ? '' : 'hidden'}`}  onClick={handleFilterClose}></div>
+                            <img src={Map} alt="map" className="h-full w-full object-cover" />
                         </div>
-                        {}
-                        <div className={`bg-gray-500/50 fixed left-0 top-0 w-full h-full ${filterPopup ? '' : 'hidden'}`} onClick={() => setFilterPopup(false)}></div>
-                        <img src={Map} alt="map" className="h-full w-full object-cover" />
-                    </div>
+                        {isPopupVisible && (
+                            <div className="absolute bottom-0 left-0 w-full z-20 p-4">
+                                <div className="max-w-3xl mx-auto border relative border-gray-200 rounded-2xl overflow-hidden flex bg-white">
+                                    <div className="relative rounded-2xl w-4/12 overflow-hidden">
+                                        <img alt="Hotel" className="w-full object-cover min-h-full" src={HotelImage} />
+                                    </div>
+                                    <div className="p-3 xl:grow xl:shrink w-8/12 flex flex-col">
+                                        <span className="absolute right-1 top-1 p-3 hover:bg-blue-100 cursor-pointer rounded-full" onClick={() => setPopupVisible(false)}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                            </svg>
+                                        </span>
+                                        <h4 className="text-md font-bold leading-6 pr-10">Sonesta Los Angeles Airport LAX</h4>
+                                        <p className="text-gray-500 text-sm pr-10">0.5 mi from South Tower Building</p>
+                                        <ul className="flex flex-wrap pt-3 pb-2">
+                                            <li className="flex me-7 text-gray-500 text-sm">
+                                                <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" className="me-1 align-text-bottom" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                                                    <path fill-rule="evenodd" d="M15 6a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" clip-rule="evenodd"></path><path d="M5.5 6a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h.6a8 8 0 0 1 5.658 2.343l5.162 5.162a.5.5 0 0 1-.111.79l-.91.506a.5.5 0 0 1-.596-.084L12 9.414l-3.303 3.303a.5.5 0 0 1-.596.084l-.91-.505a.5.5 0 0 1-.11-.79L10.586 8l-.243-.243A6 6 0 0 0 6.101 6h-.6zM5 15.5c-.146 0-.29.04-.414.115l-1.214.728a4.61 4.61 0 0 1-1.873.63c-.274.03-.499-.197-.499-.473v-1c0-.276.226-.495.497-.548.297-.057.584-.167.846-.324l1.214-.728a2.805 2.805 0 0 1 2.886 0l1.643.985a.806.806 0 0 0 .828 0l1.643-.985a2.805 2.805 0 0 1 2.886 0l1.643.985a.806.806 0 0 0 .828 0l1.643-.985a2.805 2.805 0 0 1 2.886 0l1.214.728c.262.157.549.267.846.324.271.053.497.272.497.548v1c0 .276-.224.503-.499.473a4.61 4.61 0 0 1-1.873-.63l-1.214-.728a.806.806 0 0 0-.828 0l-1.643.985a2.805 2.805 0 0 1-2.886 0l-1.643-.985a.806.806 0 0 0-.828 0l-1.643.985a2.805 2.805 0 0 1-2.886 0l-1.643-.985A.806.806 0 0 0 5 15.5zM5 20c-.146 0-.29.04-.414.115l-1.214.728a4.61 4.61 0 0 1-1.873.63C1.225 21.503 1 21.276 1 21v-1c0-.276.226-.495.497-.548.297-.057.584-.167.846-.324l1.214-.728a2.805 2.805 0 0 1 2.886 0l1.643.985a.806.806 0 0 0 .828 0l1.643-.985a2.805 2.805 0 0 1 2.886 0l1.643.985a.806.806 0 0 0 .828 0l1.643-.985a2.805 2.805 0 0 1 2.886 0l1.214.728c.262.157.549.267.846.324.271.053.497.272.497.548v1c0 .276-.224.503-.499.473a4.61 4.61 0 0 1-1.873-.63l-1.214-.728a.806.806 0 0 0-.828 0l-1.643.985a2.805 2.805 0 0 1-2.886 0l-1.643-.985a.806.806 0 0 0-.828 0l-1.643.985a2.805 2.805 0 0 1-2.886 0l-1.643-.985A.806.806 0 0 0 5 20z"></path>
+                                                </svg>
+                                                Pool
+                                            </li>
+                                            <li className="flex me-7 text-gray-500 text-sm">
+                                                <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" className="me-1 align-text-bottom" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                                                    <path d="M22.86 8.991a.484.484 0 0 0-.008-.692A15.792 15.792 0 0 0 12 4 15.792 15.792 0 0 0 1.148 8.298a.484.484 0 0 0-.008.693l.696.705a.51.51 0 0 0 .71.008A13.818 13.818 0 0 1 12 5.981c3.654 0 6.978 1.413 9.455 3.723a.51.51 0 0 0 .709-.008l.695-.705zm-4.175 4.229a.477.477 0 0 0-.009-.689A9.868 9.868 0 0 0 12 9.943c-2.572 0-4.915.98-6.676 2.588-.2.183-.2.495-.01.688l.695.704a.52.52 0 0 0 .716.011A7.894 7.894 0 0 1 12 11.924c2.025 0 3.874.76 5.275 2.01a.52.52 0 0 0 .715-.01l.695-.705zm-4.17 4.223c.189-.19.192-.5-.016-.67a3.945 3.945 0 0 0-2.5-.888c-.947 0-1.816.333-2.498.888-.208.17-.205.479-.016.67l2.163 2.19c.194.197.51.197.705 0l2.162-2.19z"></path>
+                                                </svg>
+                                                Wifi
+                                            </li>
+                                            <li className="flex me-7 text-gray-500 text-sm">
+                                                <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" className="me-1 align-text-bottom" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                                                    <path d="M6 5a1 1 0 0 1 2 0v6h8V5a1 1 0 1 1 2 0v14a1 1 0 1 1-2 0v-6H8v6a1 1 0 1 1-2 0V5zm-3 8H1.5a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5H3V8a1 1 0 0 1 2 0v8a1 1 0 1 1-2 0v-3zm20-1.5a.5.5 0 0 0-.5-.5H21V8a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-3h1.5a.5.5 0 0 0 .5-.5v-1z"></path>
+                                                </svg>
+                                                Gym
+                                            </li>
+                                        </ul>
+                                        <div className="flex justify-between mt-auto items-center">
+                                            <div className="">
+                                                <span className="inline-block p-1 px-2 border border-gray-200 leading-none rounded-sm">4.5 <span className="text-amber-300 pl-1">★</span></span>
+                                            </div>
+                                            <div className="">
+                                                <span className="">$178 <small className="font-light">Nightly</small></span><strong className="block">$534 Total</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    </>
+
                 )}
                 <div className="flex">
                     <div className="xl:w-9/12 md:w-8/12 w-full px-5">
@@ -354,20 +427,22 @@ function Home() {
                         </div>
                     </div>
                     {isVisibleFilter && (
-                        <div className={` ${filterPopup ? 'md:z-40 md:fixed md:w-full top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] md:h-[75vh]' : 'md:z-0 md:static md:bg-white bg-gray-100 top-0 left-0 h-full md:h-auto '} md:overflow-hidden xl:w-3/12 md:w-4/12 fixed w-full z-20 pb-15 pt-11 md:pt-0 md:pb-0 overflow-x-auto`}>
+                        <div className={` ${filterPopup ? 'md:z-40 md:fixed md:w-7/12 sm:w-9/12 lg:w-2/5 top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] h-full sm:h-[75vh]' : 'md:z-0 md:static md:bg-white bg-gray-100 top-0 left-0 h-full md:h-auto '} md:overflow-hidden xl:w-3/12 md:w-4/12 fixed w-full z-20 pb-15 pt-11 md:pt-0 md:pb-0 overflow-x-auto`}>
                             <div className={`border border-gray-100 rounded-md bg-white px-4 py-3 pt-0 md:pt-3 overflow-hidden ${filterPopup ? 'flex flex-col h-full' : ''}`}>
                                 <div className="header flex justify-between border-b-gray-200 md:pt-1 pb-3 border-b -mx-4 px-4 pt-3 -mt-1 md:mt-0 fixed md:static top-0 w-full md:w-auto bg-white z-20">
                                     <div className="flex items-center">
-                                        <span className="cursor-pointer mr-4 md:hidden"  onClick={handleFilterClose}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-                                            </svg>
-                                        </span>
-                                        <span className={`cursor-pointer mr-4 ${filterPopup ? '' : 'md:hidden'}`} onClick={() => setFilterPopup(false)}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-                                            </svg>
-                                        </span>
+                                            <span className="cursor-pointer mr-4 md:hidden"  onClick={handleFilterClose}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                                </svg>
+                                            </span>
+                                        {!filterPopup && !isVisibleFilter && (
+                                            <span className={`cursor-pointer mr-4 ${filterPopup ? '' : 'md:hidden'}`} onClick={() => setFilterPopup(false)}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                                                </svg>
+                                            </span>
+                                        )}
                                         <strong>
                                             Filters
                                         </strong>
@@ -375,6 +450,19 @@ function Home() {
                                     <a href="#">Clear all filter (3)</a>
                                 </div>
                                 <div className={`bg-gray-100 -mx-4 px-4 -mb-4 pb-4 ${filterPopup ? 'grow overflow-y-auto' : ''}`}>
+                                    <div className="md:hidden block">
+                                        <label htmlFor="roomType" className="pt-2 text-gray-900 block pb-1">Sort By</label>
+                                        <div className="relative">
+                                            <select name="sort-by-filter" value={sortValue} onChange={handleSortChange} className="border border-gray-400 p-2 pr-6 rounded-sm appearance-none w-full">
+                                                <option value="price-low-high">Price : Low to High</option>
+                                                <option value="price-high-low">Price : High to Low</option>
+                                                <option value="star-rating">Star Rating</option>
+                                                <option value="airport-distance">Distance from Airport</option>
+                                            </select>
+                                            <svg className="absolute right-1 top-2 mt-1" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path d="M16.44 9.146a.5.5 0 0 1 .706 0l.708.708a.5.5 0 0 1 0 .707l-5.147 5.146a1 1 0 0 1-1.414 0l-5.147-5.146a.5.5 0 0 1 0-.707l.708-.708a.5.5 0 0 1 .703-.003L12 13.586l4.44-4.44z"></path></svg>
+                                        </div>
+                                        <hr className="border-gray-200 mt-5 mb-2" />
+                                    </div>
                                     <label htmlFor="roomType" className="pt-2 text-gray-900 block pb-1">Room Type</label>
                                     <ul className="flex flex-wrap px-3 -mx-4">
                                         {roomTypes.map((type, index)=>
@@ -486,13 +574,17 @@ function Home() {
                                         )}
                                     </ul>
                                 </div>
-                                <div className={`p-3 -mx-4 bottom-0 -mb-3 flex border-t border-gray-300 bg-white ${filterPopup ? '' : 'hidden'}`}>
-                                    <button className="ml-auto px-4 py-2 bg-blue-950 text-white rounded-l-full rounded-r-full cursor-pointer" onClick={() => setFilterPopup(false)}>Done</button>
-                                </div>
+                                {!filterPopup && (
+                                    <div className={`p-3 -mx-4 bottom-0 -mb-3 flex border-t border-gray-300 bg-white ${filterPopup ? '' : 'hidden'}`}>
+                                        <button className="ml-auto px-4 py-2 bg-blue-950 text-white rounded-l-full rounded-r-full cursor-pointer" onClick={() => setFilterPopup(false)}>Done</button>
+                                    </div>
+                                )}
                             </div>
+                            
                             <div className="p-3 fixed bottom-0 w-full flex border-t border-gray-300 bg-white md:hidden">
                                 <button className="ml-auto px-4 py-2 bg-blue-950 text-white rounded-l-full rounded-r-full cursor-pointer" onClick={handleFilterClose}>Done</button>
                             </div>
+                            
                         </div>
                     )}
                 </div>     
