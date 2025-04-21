@@ -342,7 +342,7 @@ function Home() {
                             <img src={Map} alt="map" className="h-full w-full object-cover" />
                         </div>
                         {isPopupVisible && (
-                            <div className="absolute bottom-0 left-0 w-full z-20 p-4">
+                            <div className="fixed bottom-0 left-0 w-full z-20 p-4">
                                 <div className="max-w-3xl mx-auto border relative border-gray-200 rounded-2xl overflow-hidden flex bg-white">
                                     <div className="relative rounded-2xl w-4/12 overflow-hidden">
                                         <img alt="Hotel" className="w-full object-cover min-h-full" src={HotelImage} />

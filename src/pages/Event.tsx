@@ -53,8 +53,22 @@ const Event = () => {
             setIsVisibleFilter(false);
         } else {
             setIsVisibleFilter(true);
+            setIsVisibleMobileNav(false);
         }
         document.body.classList.toggle("overflow-hidden");
+    }
+
+    // const [isVisibleMobileNav, setIsVisibleMobileNav] = useState(window.innerWidth >= 768);
+    const [isVisibleMobileNav, setIsVisibleMobileNav] = useState(false);
+
+    const handleMobileNav = () => {
+        
+        if(isVisibleMobileNav) {
+            setIsVisibleMobileNav(false);
+        } else {
+            setIsVisibleMobileNav(true);
+            setIsVisibleFilter(false);
+        }
     }
 
     const [userDropdownOpen, setUserDropdownOpen] = useState(false);
@@ -90,9 +104,12 @@ const Event = () => {
     return (
         <>
             <div className="flex h-full">
-                <div className="w-2/12 flex flex-col shadow-[0_0px_15px_rgba(0,0,0,0.25)] h-full bg-white z-20">
+                <div className={`xl:w-2/12 lg:w-3/12 md:w-3/12 w-4/12 absolute md:static flex flex-col shadow-[0_0px_15px_rgba(0,0,0,0.25)] h-full bg-white md:z-20 ${isVisibleMobileNav ? 'flex z-20' : 'z-0'}`}>
                     <div className="p-3">
                         <img src={Logo} alt="Logo" className="w-30" />
+                    </div>
+                    <div className="p-4 md:hidden">
+                        <input type="text" name="search" className="border border-gray-400 rounded-md px-4 py-2 w-full" placeholder="Search.." />
                     </div>
                     <div className="grow overflow-scroll px-2">
                         <ul>
@@ -111,12 +128,15 @@ const Event = () => {
                         Settings
                     </div>
                 </div>
-                <div className="flex absolute left-2/12 h-full flex-col shadow-[5px_0_10px_-10px_rgba(0,0,0,0.15)] bg-white z-10 w-2/12">
+                <div className={`absolute xl:left-2/12 lg:left-3/12 md:left-3/12 h-full flex-col shadow-[0px_0_15px_rgba(0,0,0,0.15)] bg-white z-10 xl:w-3/12 lg:w-3/12 md:w-4/12 sm:w-4/12 ${isVisibleFilter ? 'flex z-20' : 'z-0 hidden'}`}>
                     <div className="px-5 py-3 border-b border-gray-200 min-h-18 flex justify-between items-center">
                         <h4 className="text-xl font-bold">Filters</h4>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="cursor-pointer" onClick={() => {document.body.classList.remove("overflow-hidden"); setIsVisibleFilter(false);}} viewBox="0 0 16 16">
                             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
                         </svg>
+                    </div>
+                    <div className="sm:hidden p-4">
+                        <input type="text" name="search-event" className="w-full transition-all duration-300 ease-in-out border border-gray-300 rounded-md bg-white px-4 py-2" placeholder="Search.." required />
                     </div>
                     <div className="grow overflow-auto px-5 py-3">
                         <label htmlFor="aminities" className="pt-2 text-gray-900 font-semibold block pb-1">Aminities</label>
@@ -141,11 +161,18 @@ const Event = () => {
                         <button className="bg-blue-900 text-white rounded-l-full rounded-r-full py-1 px-4 cursor-pointer" onClick={() => {document.body.classList.remove("overflow-hidden"); setIsVisibleFilter(false);}}>Apply</button>
                     </div>
                 </div>
-                <div className={`w-10/12 flex transition-all duration-300 ease-in-out z-10 flex-col ${isVisibleFilter ? 'translate-x-2/10' : ''}`}>
+                <div className={`xl:w-10/12 lg:w-9/12 md:w-9/12 sm:w-full flex transition-all duration-300 ease-in-out z-10 flex-col ${isVisibleMobileNav ? 'translate-x-4/12 md:translate-x-0' : ''} ${isVisibleFilter ? 'xl:translate-x-3/10 lg:translate-x-4/12 md:translate-x-4/9 sm:translate-x-4/12' : ''}`}>
                     <div className="shadow-lg shadow-gray-200 min-h-18 py-3 px-4 flex justify-between z-10 relative bg-white">
-                        <img src={TravelLogo} alt="Travel Logo" className="w-25" />
+                        <div className="flex">
+                            <span className="border border-gray-300 mr-4 self-center py-0.5 px-1 rounded-sm cursor-pointer inline-block md:hidden" onClick={handleMobileNav}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                                </svg>
+                            </span>
+                            <img src={TravelLogo} alt="Travel Logo" className="w-25 hidden sm:block" />
+                        </div>
                         <div className="flex items-center">
-                            <input type="text" name="search" className="border border-gray-400 rounded-md px-4 py-2" placeholder="Search.." />
+                            <input type="text" name="search" className="border border-gray-400 rounded-md px-4 py-2 hidden md:block" placeholder="Search.." />
                             <div className="flex ml-5 text-gray-500 relative cursor-pointer" onClick={toggleUserDropdown}>
                                 <img src="https://avatar.iran.liara.run/username?username=Max+Lorem" className="w-7 mr-2" />
                                 <span>Max Lorem</span>
@@ -171,20 +198,23 @@ const Event = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="grow overflow-auto bg-slate-100 p-4">
+                    <div className="grow overflow-auto bg-slate-100 p-4 relative">
+                        <div className="bg-white px-4 py-2 -mt-4 mb-4 -mx-4 sm:hidden">
+                            <img src={TravelLogo} alt="Travel Logo" className="w-25 mb-4" />
+                        </div>
                         <div className="flex justify-between items-center">
-                            <div className="flex items-center">
-                                <h2 className="text-xl font-bold">Events (18)</h2>
-                                <button className="py-1 px-3 rounded-sm cursor-pointer bg-white border border-gray-300 ml-5" onClick={handleFilterClick}>
+                            <div className="flex flex-col-reverse sm:flex-row items-start sm:items-center">
+                                <h2 className="text-xl font-bold mt-3 sm:mt-0 absolute sm:static top-3 right-3">Events (18)</h2>
+                                <button className="py-1 px-3 rounded-sm cursor-pointer bg-white border border-gray-300 ml-0 sm:ml-5" onClick={handleFilterClick}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="inline-block -mt-0.5 mr-3" viewBox="0 0 16 16">
                                     <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
                                 </svg>
                                     Filter
                                 </button>
                             </div>
-                            <div className="grow flex justify-end">
-                                <input type="text" name="search-event" className="w-40 focus:w-64 transition-all duration-300 ease-in-out border border-gray-300 rounded-md bg-white valid:w-64 px-4 py-2 mr-4" placeholder="Search.." required />
-                                <button className="py-1 px-4 rounded-sm bg-blue-950 text-white cursor-pointer">
+                            <div className="grow flex justify-end self-start sm:self-center">
+                                <input type="text" name="search-event" className="w-40 lg:focus:w-64 transition-all duration-300 ease-in-out border border-gray-300 rounded-md bg-white lg:valid:w-64 px-4 py-2 mr-4 hidden sm:block" placeholder="Search.." required />
+                                <button className="py-2 px-4 rounded-sm bg-blue-950 text-white cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="inline-block -mt-0.5 mr-3">
                                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                                     </svg>
@@ -194,8 +224,8 @@ const Event = () => {
                         </div>
                         <div className="flex flex-wrap -mx-3">
                             {Events.map((event, index) => 
-                                <div key={index} className="w-4/12 p-3">
-                                    <div className="p-5 bg-white shadow-[0_0px_15px_rgba(0,0,0,0.15)] rounded-lg relative">
+                                <div key={index} className="xl:w-4/12 md:w-1/2 sm:w-1/2 w-full p-3">
+                                    <div className="p-5 bg-white shadow-[0_0px_15px_rgba(0,0,0,0.15)] rounded-lg relative flex flex-col h-full">
                                         <div className="absolute p-1 right-4 top-4 cursor-pointer rounded-md hover:shadow-[0_0px_7px_rgba(0,0,0,0.15)]" onClick={() => toggleDropdown(event.id)}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                                 <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
@@ -211,7 +241,7 @@ const Event = () => {
                                             </div>
                                             )}
                                         </div>
-                                        <img src={event.logo} className={`h-30 ${event.logoLight ? 'bg-gray-900 rounded-lg p-2' : ''}`} />
+                                        <img src={event.logo} className={`h-30 self-start ${event.logoLight ? 'bg-gray-900 rounded-lg p-2' : ''}`} />
                                         <h3 className="text-xl font-bold mt-5">{event.title}</h3>
                                         <p className="text-gray-400 text-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="inline-block align-text-bottom mr-1" viewBox="0 0 16 16">
@@ -220,14 +250,14 @@ const Event = () => {
                                         </svg>
                                             {event.location}
                                         </p>
-                                        <div className="mt-2">
+                                        <div className="my-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="inline-block" viewBox="0 0 16 16">
                                             <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
                                                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
                                             </svg>
                                             <span className="text-gray-500 align-middle pl-2">{event.date}</span>
                                         </div>
-                                        <div className="flex flex-wrap mt-3">
+                                        <div className="flex flex-wrap mt-auto">
                                             <div className="w-1/2 mb-3 text-blue-950">
                                                 <span className="font-semibold">{event.peak}</span>
                                                 <p className="text-gray-500">Avail on Peak</p>
