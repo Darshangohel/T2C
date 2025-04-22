@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from "../assets/logo-dark.png"
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ const Dashboard = () => {
     },[]);
             
     const menuItems = [{label : "Dashboard", path : "/dashboard", active: true}, {label : "Hotel", path : "/hotel", active: false}, {label : "Event", path : "/event", active: false}, {label : "Reservations", path : "#", active: false}];
-    const [isVisibleMobileNav, setIsVisibleMobileNav] = useState(false);
+    const [isVisibleMobileNav] = useState(false);
 
     return (
         <>
