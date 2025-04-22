@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import "./Event.css";
 import Logo from "../assets/logo-dark.png"
 import { Link } from "react-router-dom";
 import TravelLogo from "../assets/travel-logo.png"
@@ -18,7 +17,7 @@ const Event = () => {
     const restaurantIcon = (<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="me-1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path fillRule="evenodd" d="M20 4.428c0-1.412-1.613-2.219-2.743-1.371A8.143 8.143 0 0 0 14 9.57V14a3 3 0 0 0 3 3h1v3.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V4.428zm-2 .608a6.143 6.143 0 0 0-2 4.535V14a1 1 0 0 0 1 1h1V5.036z" clipRule="evenodd"></path><path d="M4.347 3a.5.5 0 0 0-.497.45l-.515 5.152A4 4 0 0 0 7 12.988V20.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-7.512a4 4 0 0 0 3.665-4.386L12.15 3.45a.5.5 0 0 0-.498-.45h-1.005a.5.5 0 0 0-.497.55l.525 5.25a2 2 0 0 1-1.99 2.2h-1.37a2 2 0 0 1-1.99-2.2l.525-5.25A.5.5 0 0 0 5.352 3H4.347z"></path><path d="M7 3.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z"></path></svg>);
     const washerIcon = (<svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="me-1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path d="M9 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm2 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path><path fillRule="evenodd" d="M8 14a4 4 0 1 1 8 0 4 4 0 0 1-8 0zm4-2a2 2 0 0 0-1.414 3.414l2.828-2.828A1.994 1.994 0 0 0 12 12z" clipRule="evenodd"></path><path fillRule="evenodd" d="M4 5a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5zm3-1a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H7z" clipRule="evenodd"></path></svg>);
 
-    const menuItems = [{label : "Home", path : "/dashboard", active: false}, {label : "Event", path : "/event", active: true}, {label : "Reservations", path : "#", active: false}];
+    const menuItems = [{label : "Dashboard", path : "/dashboard", active: false}, {label : "Hotel", path : "/hotel", active: false}, {label : "Event", path : "/event", active: true}, {label : "Reservations", path : "#", active: false}];
 
     const [openDropdownId, setOpenDropdownId] = useState(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -214,12 +213,12 @@ const Event = () => {
                             </div>
                             <div className="grow flex justify-end self-start sm:self-center">
                                 <input type="text" name="search-event" className="w-40 lg:focus:w-64 transition-all duration-300 ease-in-out border border-gray-300 rounded-md bg-white lg:valid:w-64 px-4 py-2 mr-4 hidden sm:block" placeholder="Search.." required />
-                                <button className="py-2 px-4 rounded-sm bg-blue-950 text-white cursor-pointer">
+                                <Link to={"/create-event"} className="py-2 px-4 rounded-sm bg-blue-950 text-white cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" className="inline-block -mt-0.5 mr-3">
                                         <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
                                     </svg>
                                     New Event
-                                </button>
+                                </Link>
                             </div>
                         </div>
                         <div className="flex flex-wrap -mx-3">

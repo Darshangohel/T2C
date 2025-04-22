@@ -1,19 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import Hotel from './pages/Hotel';
 import './index.css';
 import Login from './pages/Login';
 import Event from './pages/Event';
+import Dashboard from './pages/Dashboard';
+import CreateEvent from './pages/CreateEvent';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Home />} />
+        <Route path="/hotel" element={<Hotel />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/event" element={<Event />} />
+        <Route path='/create-event' element={<CreateEvent/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

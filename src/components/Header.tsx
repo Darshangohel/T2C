@@ -11,7 +11,7 @@ const Header = () => {
                     <img src={logo} alt="Logo" className="w-30"/>
                     <ul className="flex">
                         <li className="px-4">
-                            <Link to="/dashboard" className="text-white">Home</Link>
+                            <Link to="/hotel" className="text-white">Hotel</Link>
                         </li>
                         <li className="px-4">
                             <Link to="/event" className="text-white">Event</Link>
