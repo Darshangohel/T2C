@@ -126,28 +126,28 @@ function Hotel() {
     };
     
     const handleInputFocus = (index: any) => {
-    setIsEditing((prev) => {
-        const updated = [...prev];
-        updated[index] = true;
-        return updated;
-    });
+        setIsEditing((prev) => {
+            const updated = [...prev];
+            updated[index] = true;
+            return updated;
+        });
     };
     
     const handleInputBlur = (index: any) => {
-    setIsEditing((prev) => {
-        const updated = [...prev];
-        updated[index] = false;
-        return updated;
-    });
+        setIsEditing((prev) => {
+            const updated = [...prev];
+            updated[index] = false;
+            return updated;
+        });
 
-    const parsed = parseInput(inputs[index]);
-    let clamped = Math.max(0, parsed || 0);
+        const parsed = parseInput(inputs[index]);
+        let clamped = Math.max(0, parsed || 0);
 
-    if (index === 1) clamped = Math.min(clamped, 1000);
+        if (index === 1) clamped = Math.min(clamped, 1000);
 
-    const newValues: [number, number] = [values[0], clamped];
-    newValues[index] = clamped;
-    setValues(newValues as [number, number]);
+        const newValues: [number, number] = [values[0], clamped];
+        newValues[index] = clamped;
+        setValues(newValues as [number, number]);
     };
 
     const [isVisibleSearch, setIsVisibleSearch] = useState(window.innerWidth >= 768);
