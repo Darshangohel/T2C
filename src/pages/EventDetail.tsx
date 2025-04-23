@@ -66,6 +66,11 @@ const EventDetail = () => {
         setSortValue(e.target.value);
     }
 
+    const parseInput = (value: any) => {
+        const numeric = value.replace(/[^\d]/g, '');
+        return numeric ? parseInt(numeric, 10) : '';
+    };
+
     const handleInputChange = (index: any, rawValue: any) => {
         const parsed = parseInput(rawValue);
 
@@ -122,11 +127,11 @@ const EventDetail = () => {
         return `$${value.toLocaleString()}`;
     };
 
-    const formatDate = (date: any) =>
-        date.toLocaleDateString("en-US", {
-          month: "short",
-          day: "2-digit",
-    });
+    // const formatDate = (date: any) =>
+    //     date.toLocaleDateString("en-US", {
+    //       month: "short",
+    //       day: "2-digit",
+    // });
 
     const handleDateChange = (date: any) => {
         if (date) {

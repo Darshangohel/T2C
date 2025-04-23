@@ -9,7 +9,7 @@ interface Props {
     setIsVisibleMobileNav: (val: boolean) => void;
 }
 
-const TopBar = ({ isVisibleFilter, setIsVisibleFilter, isVisibleMobileNav, setIsVisibleMobileNav }: Props) => {
+const TopBar = ({ setIsVisibleFilter, isVisibleMobileNav, setIsVisibleMobileNav }: Props) => {
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [userDropdownOpen, setUserDropdownOpen] = useState(false);
 
