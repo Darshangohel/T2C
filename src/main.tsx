@@ -7,8 +7,9 @@ import Login from './pages/Login';
 import Event from './pages/Event';
 import Dashboard from './pages/Dashboard';
 import CreateEvent from './pages/CreateEvent';
-import EventDetail from './pages/EventDetail';
+import HotelSelection from './pages/HotelSelection';
 import HotelDetail from './pages/HotelDetail';
+import EventDetail from './pages/EventDetail';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/login" element={<Login />} />
         <Route path="/event" element={<Event />} />
         <Route path='/create-event' element={<CreateEvent/>} />
+        <Route path='/hotel-selection' element={<HotelSelection/>} />
         <Route path='/event-detail' element={<EventDetail/>} />
         <Route path='/hotel-detail' element={<HotelDetail/>} />
       </Routes>
