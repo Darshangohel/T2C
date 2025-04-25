@@ -407,7 +407,7 @@ const HotelSelection = () => {
                         )}
                         <div className="flex">
                             <div className="xl:w-9/12 md:w-8/12 w-full px-5">
-                                <div className="flex bg-white -ml-5 py-5 rounded-md flex-wrap justify-between xl:flex-row flex-col -mr-5 md:-mr-0">
+                                <div className="flex bg-white -ml-5 py-5 rounded-md flex-wrap xl:flex-row flex-col -mr-5 md:-mr-0">
                                     {data.map((hotel, index) => (
                                         <div key={index} className="xl:px-5 xl:w-[50%] pb-5">
                                             <div className="border relative border-gray-200 flex flex-row xl:flex-col rounded-2xl overflow-hidden h-full">

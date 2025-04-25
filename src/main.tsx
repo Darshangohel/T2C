@@ -10,6 +10,7 @@ import CreateEvent from './pages/CreateEvent';
 import HotelSelection from './pages/HotelSelection';
 import HotelDetail from './pages/HotelDetail';
 import EventDetail from './pages/EventDetail';
+import EventHotels from './pages/EventHotels';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path='/hotel-selection' element={<HotelSelection/>} />
         <Route path='/event-detail' element={<EventDetail/>} />
         <Route path='/hotel-detail' element={<HotelDetail/>} />
+        <Route path='event-hotels' element={<EventHotels/>} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

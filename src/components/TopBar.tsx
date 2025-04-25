@@ -23,7 +23,7 @@ const TopBar = ({ setIsVisibleFilter, isVisibleMobileNav, setIsVisibleMobileNav 
     };
 
     return (
-        <div className="shadow-lg shadow-gray-200 min-h-18 py-3 px-4 flex justify-between z-10 relative bg-white">
+        <div className="shadow-lg shadow-slate-900/5 min-h-18 py-3 px-4 flex justify-between z-10 relative bg-white">
             <div className="flex">
                 <span
                     className="border border-gray-300 mr-4 self-center py-0.5 px-1 rounded-sm cursor-pointer inline-block md:hidden"
