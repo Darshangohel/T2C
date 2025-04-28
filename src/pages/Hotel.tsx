@@ -28,7 +28,7 @@ function Hotel() {
     const data = [
         {"title" : "Sonesta Los Angeles Airport LAX", "img" : HotelImage , "distance" : "0.5", "distance-from" : "South Tower Building", "aminities": [{label: "Pool", icon: poolIcon},{label: "Wifi", icon: wifiIcon},{label: "Gym", icon: gymIcon}], "star": "4.5", "rate": "178" },
         {"title" : "Hyatt Regency Los Angeles International Airport", "img" : HotelImage2 , "distance" : "0.7", "distance-from" : "South Tower Building", "aminities": [{label: "Pool", icon: poolIcon},{label: "Wifi", icon: wifiIcon},{label: "Gym", icon: gymIcon},{label: "Pet Friendly", icon: petFriendlyIcon}], "star": "4.7", "rate": "181" },
-        {"title" : "Holiday Inn Los Angeles - LAX Airport by IHG", "img" : HotelImage3 , "distance" : "1.88", "distance-from" : "South Tower Building", "aminities": [{label: "Gym", icon: gymIcon},{label: "Pet Friendly", icon: petFriendlyIcon},{"Electric car charging station": evChargingIcon}], "star": "4.8", "rate": "170" },
+        {"title" : "Holiday Inn Los Angeles - LAX Airport by IHG", "img" : HotelImage3 , "distance" : "1.88", "distance-from" : "South Tower Building", "aminities": [{label: "Gym", icon: gymIcon},{label: "Pet Friendly", icon: petFriendlyIcon},{label: "Electric car charging station", icon: evChargingIcon}], "star": "4.8", "rate": "170" },
         {"title" : "Embassy Suites by Hilton Los Angeles International Airport North", "img" : HotelImage4 , "distance" : "0.97", "distance-from" : "South Tower Building", "aminities": [{label: "Pool", icon: poolIcon},{label: "Wifi",icon: wifiIcon},{label: "Gym", icon: gymIcon}], "star": "4.4", "rate": "174" },
     ]
 

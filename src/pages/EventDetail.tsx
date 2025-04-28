@@ -35,7 +35,7 @@ const EventDetail = () => {
     const [activeTab, setActiveTab] = useState("hotels");
     const [gliderStyle, setGliderStyle] = useState({ left: 0, width: 0 });
     const containerRef = useRef(null);
-    const buttonsRef = useRef({});
+    const buttonsRef = useRef<Record<string, HTMLButtonElement | null>>({});;
 
     const renderTabContent = () => {
         switch (activeTab) {
