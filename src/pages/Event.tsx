@@ -236,6 +236,7 @@ const Event = () => {
                                                     <li><a href="#" className="py-2 text-gray-600 hover:bg-gray-100 block px-3">Booking Site</a></li>
                                                     <li><a href="#" className="py-2 text-gray-600 hover:bg-gray-100 block px-3">Groups</a></li>
                                                     <li><a href="#" className="py-2 text-gray-600 hover:bg-gray-100 block px-3">Reservations</a></li>
+                                                    <li><a href="#" className="py-2 text-gray-600 hover:bg-gray-100 block px-3">Deactivate</a></li>
                                                 </ul>
                                             </div>
                                             )}

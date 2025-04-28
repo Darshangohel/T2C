@@ -20,7 +20,7 @@ const NavSidebar = ({ isVisibleMobileNav }: Props) => {
     const menuItems = [
         { label: "Dashboard", path: "/dashboard", active: true },
         { label: "Hotel", path: "/hotel", active: false },
-        { label: "Event", path: "/event", active: false },
+        { label: "Events", path: "/event", active: false },
         { label: "Reservations", path: "#", active: false }
     ];
 
