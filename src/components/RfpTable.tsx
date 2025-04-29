@@ -2,6 +2,19 @@ import React, { useState } from 'react';
 import Button from './ui/Button';
 import StatusBadge from './StatusBadge';
 
+type RfpType = {
+    id: string;
+    hotelName: string;
+    location: string;
+    eventName: string;
+    startDate: string;
+    endDate: string;
+    roomsRequested: number;
+    estimatedValue: number;
+    status: string;
+    lastUpdated: string;
+};
+
 type RfpTableProps = {
     rfps: RfpType[];
     onViewDetails: (id: string) => void;

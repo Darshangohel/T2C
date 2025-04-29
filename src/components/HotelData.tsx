@@ -18,7 +18,6 @@ type Hotel = {
     totalAvailbility?: string;
     showStatus?: boolean;
     location? : string;
-    mode: string;
 };
 
 type HotelDataProps = {
@@ -27,10 +26,13 @@ type HotelDataProps = {
     mode: string;
 }
 
+type StatusType = 'live' | 'deactivate' | 'hold';
+
 export default function HotelData({ HotelDataJson, tileClassName, mode }: HotelDataProps) {
 
+    
     function StatusDropdown() {
-        const [status, setStatus] = useState({label: "Live", status: "live"});
+        const [status, setStatus] = useState<{label: string, status: StatusType}>({label: "Live", status: "live"});
         const [open, setOpen] = useState(false);
       
         const handleSelect = (newStatus: any) => {
@@ -39,7 +41,7 @@ export default function HotelData({ HotelDataJson, tileClassName, mode }: HotelD
             setOpen(false);
         };
       
-        const statusColor = {
+        const statusColor: Record<StatusType, string> = {
           live: "bg-green-900/70",
           deactivate: "bg-red-600/70",
           hold: "bg-gray-600/70",
