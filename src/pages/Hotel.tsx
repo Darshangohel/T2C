@@ -397,7 +397,7 @@ function Hotel() {
                 <div className="flex">
                     <div className="xl:w-9/12 md:w-8/12 w-full px-5">
                         <div className="flex -ml-5 flex-wrap justify-between xl:flex-row flex-col -mr-5 md:-mr-0">
-                            <HotelData HotelDataJson={data} tileClassName="xl:w-[50%] xl:pr-7" />
+                            <HotelData  HotelDataJson={data} tileClassName="xl:w-[50%] xl:pr-7" />
                         </div>
                     </div>
                     {isVisibleFilter && (

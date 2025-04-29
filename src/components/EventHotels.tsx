@@ -11,12 +11,12 @@ const EventHotels = () => {
     const date = new Date();
     date.setDate(date.getDate() + 7);
     
-    const data = [
-        {"title" : "Sonesta Los Angeles Airport LAX", "img" : HotelImage , "distance" : "0.5", "distance-from" : "South Tower Building", "star": "4.5", "rate": "178", booked: "10", totalAvailbility: "12" },
-        {"title" : "Hyatt Regency Los Angeles International Airport", "img" : HotelImage2 , "distance" : "0.7", "distance-from" : "South Tower Building", "star": "4.7", "rate": "181", booked: "15", totalAvailbility: "20" },
-        {"title" : "Holiday Inn Los Angeles - LAX Airport by IHG", "img" : HotelImage3 , "distance" : "1.88", "distance-from" : "South Tower Building", "star": "4.8", "rate": "170", booked: "20", totalAvailbility: "20" },
-        {"title" : "Embassy Suites by Hilton Los Angeles International Airport North", "img" : HotelImage4 , "distance" : "0.97", "distance-from" : "South Tower Building", "star": "4.4", "rate": "174", booked: "10", totalAvailbility: "30" },
-        {"title": "Hilton Grand Vacations Club on the Las Vegas Strip", "img" : HotelImage5, "distance" : "1", "distance-from" : "South Tower Building", "star": "4.1", "rate": "139", booked: "10", totalAvailbility: "40"}
+    const data = [  
+        {"title" : "Sonesta Los Angeles Airport LAX", "img" : HotelImage , "distance" : "0.5", "distance-from" : "South Tower Building", tel: "(123)456-789", location: "416 W 8th St, Los Angeles, CA 90014", booked: "10", totalAvailbility: "12", showStatus: true },
+        {"title" : "Hyatt Regency Los Angeles International Airport", "img" : HotelImage2 , "distance" : "0.7", "distance-from" : "South Tower Building", tel: "(123)456-789", location: "1030 W El Segundo Blvd, Gardena, CA 90247", booked: "15", totalAvailbility: "20", showStatus: true },
+        {"title" : "Holiday Inn Los Angeles - LAX Airport by IHG", "img" : HotelImage3 , "distance" : "1.88", "distance-from" : "South Tower Building", tel: "(123)456-789", location: "900 W Olympic Blvd, Los Angeles, CA 90015" , booked: "20", totalAvailbility: "20", showStatus: true },
+        {"title" : "Embassy Suites by Hilton Los Angeles International Airport North", "img" : HotelImage4 , "distance" : "0.97", "distance-from" : "South Tower Building", tel: "(123)456-789", location: "665 Bush St #1, San Francisco, CA 94108", booked: "10", totalAvailbility: "30", showStatus: true },
+        {"title": "Hilton Grand Vacations Club on the Las Vegas Strip", "img" : HotelImage5, "distance" : "1", "distance-from" : "South Tower Building", tel: "(123)456-789", location: "50 3rd St, San Francisco, CA 94103", booked: "10", totalAvailbility: "40", showStatus: true}
     ]
 
     const [sortValue, setSortValue] = useState('price-low-high');
@@ -53,7 +53,7 @@ const EventHotels = () => {
             <div className="flex">
                 <div className="w-full px-5">
                     <div className="flex bg-white rounded-md xl:flex-wrap xl:flex-row flex-col py-5 px-5 xl:px-0 -ml-5 -mr-5">
-                        <HotelData HotelDataJson={data} />
+                        <HotelData HotelDataJson={data} mode="dashboard" />
                     </div>
                 </div>
             </div>     

@@ -11,6 +11,7 @@ import HotelSelection from './pages/HotelSelection';
 import HotelDetail from './pages/HotelDetail';
 import EventDetail from './pages/EventDetail';
 // import EventHotels from './components/EventHotels';
+import Venues from './pages/Venues';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -25,6 +26,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path='/hotel-selection' element={<HotelSelection/>} />
         <Route path='/event-detail' element={<EventDetail/>} />
         <Route path='/hotel-detail' element={<HotelDetail/>} />
+        <Route path='/venues' element={<Venues/>} />
+
         {/* <Route path='event-hotels' element={<EventHotels/>} /> */}
       </Routes>
     </BrowserRouter>
