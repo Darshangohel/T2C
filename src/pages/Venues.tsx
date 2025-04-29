@@ -5,6 +5,7 @@ import venueImg from "../assets/venueimage.jpeg"
 import venueImg2 from "../assets/venueimage-2.webp"
 import venueImg3 from "../assets/venueimage-3.webp"
 
+
 function Venues() {
     const [isVisibleMobileNav, setIsVisibleMobileNav] = useState(false);
     const [isVisibleFilter, setIsVisibleFilter] = useState(false);
