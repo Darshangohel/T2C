@@ -23,7 +23,7 @@ type Hotel = {
 type HotelDataProps = {
     HotelDataJson: Hotel[];
     tileClassName?: string;
-    mode: string;
+    mode?: string;
 }
 
 type StatusType = 'live' | 'deactivate' | 'hold';

@@ -3,6 +3,7 @@ import NavSidebar from '../components/NavSidebar';
 import TopBar from '../components/TopBar';
 import RfpTable from '../components/RfpTable';
 import Button from '../components/ui/Button';
+import { RfpType } from '../components/RfpTable';
 
 const mockRfps: RfpType[] = [
     {

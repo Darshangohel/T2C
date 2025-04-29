@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import Button from './ui/Button';
 import StatusBadge from './StatusBadge';
 
-type RfpType = {
+type RfpStatus = 'pending' | 'confirmed' | 'declined' | 'negotiating' | 'awaiting_info';
+
+export type RfpType = {
     id: string;
     hotelName: string;
     location: string;
@@ -11,7 +13,7 @@ type RfpType = {
     endDate: string;
     roomsRequested: number;
     estimatedValue: number;
-    status: string;
+    status: RfpStatus;
     lastUpdated: string;
 };
 
