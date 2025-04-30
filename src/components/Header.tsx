@@ -1,11 +1,11 @@
-import logo from "../assets/logo-white.png"
-import background from "../assets/bg.jpg"
+import logo from "../assets/t2c.png"
+import background from "../assets/header-banner.jpg"
 import SportLogo from "../assets/national-championships.png"
 import { Link } from "react-router-dom"
 
 const Header = () => {
     return (
-        <header style={{backgroundImage: `url(${background})`}} className="bg-top-right relative bg-cover after:content-[''] after:block after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black/30">
+        <header style={{backgroundImage: `url(${background})`}} className="bg-center relative bg-cover after:content-[''] after:block after:absolute after:top-0 after:left-0 after:w-full after:h-full after:bg-black/30">
             <div className="2xl:w-[1432px] xl:w-7xl lg:w-5xl w-auto px-4 relative z-10 mx-auto mb-10 after:content-[''] after:block after:h-0.5 after:bg-gradient-to-r after:from-transparent after:via-white after:to-transparent">
                 <div className="pt-7 flex justify-between items-center pb-3">
                     <img src={logo} alt="Logo" className="w-30"/>
@@ -28,7 +28,7 @@ const Header = () => {
                         <img src={SportLogo} alt="Sport Logo" className="w-50" />
                     </div>
                     <div className="md:col-span-7 col-span-1 flex flex-col justify-center text-white">
-                        <h3 className="block text-2xl font-bold uppercase">Wallyball National Chanpionship</h3>
+                        <h3 className="block text-2xl font-bold uppercase">Volleyball National Chanpionship</h3>
                         <ul className='flex -mx-3 font-extralight'>
                             <li className='text-sm px-4'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className='inline-block align-text-top mr-1.5' viewBox="0 0 16 16">

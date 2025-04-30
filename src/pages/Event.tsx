@@ -173,7 +173,22 @@ const Event = () => {
                         <div className="flex flex-wrap -mx-3">
                             {Events.map((event, index) => 
                                 <div key={index} className="xl:w-4/12 md:w-1/2 sm:w-1/2 w-full p-3">
-                                    <div className="p-5 bg-white shadow-[0_0px_15px_rgba(0,0,0,0.15)] rounded-lg relative flex flex-col h-full">
+                                    <div className="p-5 bg-white shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 rounded-lg relative flex flex-col h-full">
+                                        {/* <div className="relative rounded-2xl w-4/12 xl:w-auto overflow-hidden after:content-[''] after:absolute after:left-0 after:top-0 after:w-full after:h-full after:bg-linear-to-t after:from-neutral-950/70 after:to-transparent">
+                                            <div className="absolute bottom-4 left-4 z-10 text-white">
+                                                <h4 className="text-xl font-bold leading-6">
+                                                    <a href="#">{event.title}</a>
+                                                </h4>
+                                                <p className="font-extralight text-sm relative pl-5">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="absolute left-0 top-1/2 -translate-y-1/2 align-text-bottom mr-2" viewBox="0 0 16 16">
+                                                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
+                                                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                                                    </svg>
+                                                    {event.location}
+                                                </p>
+                                            </div>
+                                            <img src={event.logo} alt={event.title} className="w-full object-cover xl:h-[320px] h-full group-hover:scale-105 transition-transform duration-700" />
+                                        </div> */}
                                         <div className="absolute p-1 right-4 top-4 cursor-pointer rounded-md hover:shadow-[0_0px_7px_rgba(0,0,0,0.15)]" onClick={() => toggleDropdown(event.id)}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                                 <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>

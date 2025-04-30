@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Logo from "../assets/logo-dark.png";
+import Logo from "../assets/t2c.png";
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -28,7 +28,7 @@ const NavSidebar = ({ isVisibleMobileNav }: Props) => {
     return (
         <div className={`xl:w-2/12 lg:w-3/12 md:w-3/12 w-4/12 absolute md:static flex flex-col shadow-md h-full bg-white transition-all duration-300 ease-in-out z-20 ${isVisibleMobileNav ? 'left-0' : '-left-full'} md:left-0`}>
             <div className="p-3">
-                <img src={Logo} alt="Logo" className="w-30" />
+                <img src={Logo} alt="Logo" className="h-12 mx-auto" />
             </div>
             <div className="p-4 md:hidden">
                 <input type="text" name="search" className="border border-gray-400 rounded-md px-4 py-2 w-full" placeholder="Search.." />
