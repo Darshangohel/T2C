@@ -1,21 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import NavSidebar from "../components/NavSidebar";
 import TopBar from "../components/TopBar";
-import venueImg from "../assets/venueimage.jpeg"
-import venueImg2 from "../assets/venueimage-2.webp"
-import venueImg3 from "../assets/venueimage-3.webp"
 import { Calendar, Users, ArrowRight } from 'lucide-react';
-import { Venue, VenueCategory } from "../types";
+import { VenueCategory } from "../types";
 import { getVenues } from "../data/mockData";
 
-interface VenuesProps {
-    venues: Venue[];
-}
 
-const Venues: React.FC<VenuesProps> = ({ venues = getVenues() }) => {
-    
-    // const formattedAddress = `${venue.address}, ${venue.city}, ${venue.state} ${venue.zip}`;
-    
+function Venues() {
+    const venues = getVenues();
     const [activeFilter, setActiveFilter] = useState<VenueCategory | 'ALL'>('ALL');
     const [isVisibleMobileNav, setIsVisibleMobileNav] = useState(false);
     const [isVisibleFilter, setIsVisibleFilter] = useState(false);
