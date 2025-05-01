@@ -54,14 +54,14 @@ const CreateEvent = () => {
 
     const [budgetValue, setBudgetValue] = useState('');
 
-  const formatCurrency = (num) => {
+  const formatCurrency = (num: any) => {
     if (!num) return '';
     const cleaned = num.replace(/[^0-9]/g, '');
     const formatted = Number(cleaned).toLocaleString();
     return formatted;
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const raw = e.target.value.replace(/,/g, '');
     if (!/^\d*$/.test(raw)) return; // block non-numeric
     setBudgetValue(formatCurrency(raw));
