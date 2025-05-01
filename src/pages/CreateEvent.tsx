@@ -43,6 +43,30 @@ const CreateEvent = () => {
         }
     }
 
+    const [currentStep, setCurrentStep] = useState(1);
+    const totalSteps = 2;
+
+    const nextStep = () => {
+        if (currentStep < totalSteps) {
+          setCurrentStep(currentStep + 1);
+        }
+    };
+
+    const [budgetValue, setBudgetValue] = useState('');
+
+  const formatCurrency = (num) => {
+    if (!num) return '';
+    const cleaned = num.replace(/[^0-9]/g, '');
+    const formatted = Number(cleaned).toLocaleString();
+    return formatted;
+  };
+
+  const handleChange = (e) => {
+    const raw = e.target.value.replace(/,/g, '');
+    if (!/^\d*$/.test(raw)) return; // block non-numeric
+    setBudgetValue(formatCurrency(raw));
+  };
+
     return (
         <>
             <div className="flex h-full">
@@ -113,10 +137,48 @@ const CreateEvent = () => {
                             <li className='px-2'>/</li>
                             <li className='ps-2'>Create Event</li>
                         </ul>
-                        <div className='grid grid-cols-3 gap-4'>
+                        <h2 className="font-bold text-2xl mb-5">Event Details</h2>
+                        <div className='grid grid-cols-3 gap-4 mb-5'>
                             <div className='bg-white rounded-md p-10 border border-gray-200'>
                                 <h4 className='text-center font-bold text-lg mb-3'>Select event logo</h4>
                                 <FileUpload />
+                                <div className='flex items-center mb-10 my-5'>
+                                    <label htmlFor='event-type' className='font-bold pr-4 w-4/12'>Event Type</label>
+                                    <div className="border border-gray-300 grow rounded-md pr-3 focus-within:border-blue-800">
+                                        <select id="event-type" className="focus:outline-0 font-bold w-full p-3 pr-0">
+                                        <option value="Conference">Conference</option>
+                                        <option value="Meeting">Meeting</option>
+                                        <option value="Workshop">Workshop</option>
+                                        <option value="Seminar">Seminar</option>
+                                        <option value="Training">Training</option>
+                                        <option value="Reception">Reception</option>
+                                        <option value="Gala">Gala</option>
+                                        <option value="Wedding">Wedding</option>
+                                        <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className='flex items-center mb-10'>
+                                    <label htmlFor='organizer' className='font-bold pr-4 w-4/12'>Organizer</label>
+                                    <input name='organizer' id='organizer' type="text" placeholder="Event Organizer" className="bg-white grow border border-gray-200 p-3 rounded-md" />
+                                </div>
+                                <div className='flex items-center'>
+                                    <label htmlFor='budget' className='font-bold pr-4 w-4/12'>Budget (USD)</label>
+                                    <div className="relative grow">
+                                        <span className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500 font-bold">$</span>
+                                        <input
+                                            name="budget"
+                                            id="budget"
+                                            inputMode="numeric"
+                                            value={budgetValue}
+                                            onChange={handleChange}
+                                            placeholder="Please Enter Event Budget"
+                                            className="pl-8 bg-white grow border border-gray-200 p-3 rounded-md w-full"
+                                        />
+                                    </div>
+                                    {/* <input name='budget' id='budget' min="0" type="number" placeholder='Please Enter Event Title' className='bg-white grow border border-gray-200 p-3 rounded-md' /> */}
+                                </div>
+                                
                             </div>
                             <div className='bg-white p-10 col-span-2 rounded-md'>
                                 <div className='flex items-center mb-10'>
@@ -154,7 +216,7 @@ const CreateEvent = () => {
                             </div>
                         </div>
                         <div className='flex pt-3 mt-auto'>
-                            <button className='py-2 px-3 ml-auto bg-blue-950 text-white font-light rounded-sm cursor-pointer'>
+                            <button onClick={nextStep} className='py-2 px-3 ml-auto bg-blue-950 text-white font-light rounded-sm cursor-pointer'>
                                 Create Event
                             </button>
                         </div>

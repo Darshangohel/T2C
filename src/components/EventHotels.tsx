@@ -5,6 +5,7 @@ import HotelImage3 from "../assets/hotel-3.avif"
 import HotelImage4 from "../assets/hotel-4.avif"
 import HotelImage5 from '../assets/hotel-5.jpg'
 import HotelData from './HotelData';
+import { Plus, Search } from 'lucide-react';
 
 const EventHotels = () => {
     
@@ -39,20 +40,21 @@ const EventHotels = () => {
                     </select>
                     <label htmlFor='sortby'><svg className="absolute right-1 top-2 mt-1" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><path d="M16.44 9.146a.5.5 0 0 1 .706 0l.708.708a.5.5 0 0 1 0 .707l-5.147 5.146a1 1 0 0 1-1.414 0l-5.147-5.146a.5.5 0 0 1 0-.707l.708-.708a.5.5 0 0 1 .703-.003L12 13.586l4.44-4.44z"></path></svg></label>
                 </div>
-                <div>
+                <div className="flex items-center">
+                    <button className="py-2 px-4 rounded-sm bg-blue-950 text-white cursor-pointer mr-4">
+                        <Plus size={20} strokeWidth={1} className="inline-block align-text-bottom" /> Add Hotel
+                    </button>
                     <div className="bg-white px-3 py-2 rounded-md border border-gray-200 focus-within:border-blue-800 flex items-center">
                         <input type="text" className="grow focus:outline-none" placeholder="Search..." name="search_reservation" />
-                        <button className="text-gray-500 cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                            </svg>
+                        <button className="text-gray-500 pl-2 cursor-pointer">
+                            <Search />
                         </button>
                     </div>
                 </div>
             </div>
             <div className="flex">
-                <div className="w-full px-5">
-                    <div className="flex bg-white rounded-md xl:flex-wrap xl:flex-row flex-col py-5 px-5 xl:px-0 -ml-5 -mr-5">
+                <div className="w-full">
+                    <div className="flex xl:flex-wrap xl:flex-row flex-col xl:px-0 -ml-5 -mr-5">
                         <HotelData HotelDataJson={data} mode="dashboard" />
                     </div>
                 </div>

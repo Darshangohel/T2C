@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import Logo from "../assets/t2c.png";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 interface Props {
     isVisibleMobileNav: boolean;
 }
 
 const NavSidebar = ({ isVisibleMobileNav }: Props) => {
+    const location = useLocation();
+    
     useEffect(() => {
         document.body.classList.add("h-full");
         document.documentElement.classList.add("h-full");
@@ -18,11 +20,11 @@ const NavSidebar = ({ isVisibleMobileNav }: Props) => {
     }, []);
 
     const menuItems = [
-        { label: "Dashboard", path: "/dashboard", active: true },
-        { label: "Hotel", path: "/hotel", active: false },
-        { label: "Events", path: "/event", active: false },
-        { label: "Reservations", path: "#", active: false },
-        { label: "Venues", path: "/venues", active: false }
+        { label: "Dashboard", path: "/dashboard" },
+        // { label: "Hotel", path: "/hotel" },
+        { label: "Events", path: "/event" },
+        { label: "Reservations", path: "#" },
+        { label: "Venues", path: "/venues"}
     ];
 
     return (
@@ -35,13 +37,19 @@ const NavSidebar = ({ isVisibleMobileNav }: Props) => {
             </div>
             <div className="grow overflow-scroll px-2">
                 <ul>
-                    {menuItems.map((item, index) => (
+                {menuItems.map((item, index) => {
+                    const isActive = location.pathname === item.path;
+                    return (
                         <li className="px-1" key={index}>
-                            <Link to={item.path} className={`block hover:bg-blue-50 p-3 rounded-sm ${item.active ? 'bg-blue-50' : ''}`}>
+                            <Link
+                                to={item.path}
+                                className={`block hover:bg-blue-50 p-3 rounded-sm ${isActive ? 'bg-blue-50 font-semibold text-blue-700' : ''}`}
+                            >
                                 {item.label}
                             </Link>
                         </li>
-                    ))}
+                    );
+                })}
                 </ul>
             </div>
             <div className="p-3 border-t border-gray-200 flex items-center">

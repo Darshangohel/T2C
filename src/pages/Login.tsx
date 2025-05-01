@@ -73,7 +73,7 @@ const Login = () => {
               <h2 className=" text-3xl font-bold">Welcome Back!</h2>
               <p className='text-gray-600'>Please enter your credentials to access your account.</p>
               <div className="block mt-7">
-                <label htmlFor="email" className='block text-gray-600'>Email</label>
+                <label htmlFor="email" className="block text-gray-600 after:content-['*'] after:pl-1 after:text-red-700">Email</label>
                 <input
                   type="email"
                   id="email"
@@ -82,11 +82,11 @@ const Login = () => {
                   onChange={handleChange}
                   className={`border border-gray-300 p-1 rounded-sm w-full ${errors.email} ? 'error' : ''`}
                 />
-                {errors.email && <span className="error-message">{errors.email}</span>}
+                {errors.email && <span className="text-red-600">{errors.email}</span>}
               </div>
               
               <div className="block mt-2 mb-7">
-                <label htmlFor="password" className='block text-gray-600'>Password</label>
+                <label htmlFor="password" className="block text-gray-600 after:content-['*'] after:pl-1 after:text-red-700">Password</label>
                 <input
                   type="password"
                   id="password"
@@ -95,7 +95,7 @@ const Login = () => {
                   onChange={handleChange}
                   className={`border border-gray-300 p-1 rounded-sm w-full ${errors.email} ? 'error' : ''`}
                 />
-                {errors.password && <span className="error-message">{errors.password}</span>}
+                {errors.password && <span className="text-red-600">{errors.password}</span>}
               </div>
               
               <button type="submit" className="rounded-lg text-white cursor-pointer bg-emerald-800 block w-full p-3">Sign In</button>

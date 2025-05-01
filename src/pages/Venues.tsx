@@ -19,7 +19,6 @@ function Venues() {
           label: category
         }))
       ];
-      console.log(venues);
       const filteredVenues = activeFilter === 'ALL' 
       ? venues 
       : venues.filter(venue => venue.category === activeFilter);

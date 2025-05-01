@@ -7,6 +7,10 @@ import asaLogo from "../assets/asa-logo.png"
 import weddingLogo from "../assets/wedding-festival.png"
 import NavSidebar from "../components/NavSidebar";
 import TopBar from "../components/TopBar";
+import volleyballEventImg from "../assets/volleyball-event.jpg";
+import conferenceImg from "../assets/conference.jpg"
+import weddingImg from "../assets/wedding.jpg"
+import { ClipboardCheck, TicketCheck, Users, CalendarArrowUp, Calendar, MapPin } from "lucide-react";
 
 const Event = () => {
 
@@ -83,12 +87,12 @@ const Event = () => {
     }
 
     const Events = [
-        {id: 1, title: "Volleyball National Championship", logo: LogoWallyBall, location: "Boston, MA", date: "07/02/2025 - 07/02/2025", peak: "250", nights: "100/1,000", ind: "20/10", group: "16/20"},
-        {id: 2, title: "ESA Annual Conference", logo: asaLogo, logoLight: true , location: "Boston, MA", date: "09/04/2025 - 12/04/2025", peak: "25", nights: "77/890", ind: "65/5", group: "11/20"},
-        {id: 3, title: "Wedding Festival", logo: weddingLogo , location: "Boston, MA", date: "10/10/2025 - 10/12/2025", peak: "40", nights: "23/345", ind: "35/8", group: "18/20"},
-        {id: 4, title: "ESA Annual Conference", logo: asaLogo, logoLight: true , location: "Boston, MA", date: "09/04/2025 - 12/04/2025", peak: "25", nights: "77/890", ind: "65/5", group: "11/20"},
-        {id: 5, title: "Wedding Festival", logo: weddingLogo , location: "Boston, MA", date: "10/10/2025 - 10/12/2025", peak: "40", nights: "23/345", ind: "35/8", group: "18/20"},
-        {id: 6, title: "Volleyball National Championship", logo: LogoWallyBall, location: "Boston, MA", date: "07/02/2025 - 07/02/2025", peak: "250", nights: "100/1,000", ind: "20/10", group: "16/20"},
+        {id: 1, title: "Volleyball National Championship", logo: LogoWallyBall, location: "Boston, MA", date: "07/02/2025 - 07/02/2025", peak: "250", nights: "100/1,000", ind: "20/10", group: "16/20", image: volleyballEventImg},
+        {id: 2, title: "ESA Annual Conference", logo: asaLogo, logoLight: true , location: "Boston, MA", date: "09/04/2025 - 12/04/2025", peak: "25", nights: "77/890", ind: "65/5", group: "11/20", image: conferenceImg},
+        {id: 3, title: "Wedding Festival", logo: weddingLogo , location: "Boston, MA", date: "10/10/2025 - 10/12/2025", peak: "40", nights: "23/345", ind: "35/8", group: "18/20", image: weddingImg},
+        {id: 4, title: "ESA Annual Conference", logo: asaLogo, logoLight: true , location: "Boston, MA", date: "09/04/2025 - 12/04/2025", peak: "25", nights: "77/890", ind: "65/5", group: "11/20", image: conferenceImg },
+        {id: 5, title: "Wedding Festival", logo: weddingLogo , location: "Boston, MA", date: "10/10/2025 - 10/12/2025", peak: "40", nights: "23/345", ind: "35/8", group: "18/20", image: weddingImg},
+        {id: 6, title: "Volleyball National Championship", logo: LogoWallyBall, location: "Boston, MA", date: "07/02/2025 - 07/02/2025", peak: "250", nights: "100/1,000", ind: "20/10", group: "16/20", image: volleyballEventImg},
     ];
 
     const aminities = [
@@ -172,23 +176,27 @@ const Event = () => {
                         </div>
                         <div className="flex flex-wrap -mx-3">
                             {Events.map((event, index) => 
-                                <div key={index} className="xl:w-4/12 md:w-1/2 sm:w-1/2 w-full p-3">
-                                    <div className="p-5 bg-white shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 rounded-lg relative flex flex-col h-full">
-                                        {/* <div className="relative rounded-2xl w-4/12 xl:w-auto overflow-hidden after:content-[''] after:absolute after:left-0 after:top-0 after:w-full after:h-full after:bg-linear-to-t after:from-neutral-950/70 after:to-transparent">
+                                <div key={index} className="xl:w-4/12 md:w-1/2 sm:w-1/2 w-full p-3 group">
+                                    <div className="p-5 bg-white shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 rounded-2xl relative flex flex-col h-full">
+                                        <div className="relative -mx-5 -mt-5 mb-5 rounded-2xl w-4/12 xl:w-auto overflow-hidden after:content-[''] after:absolute after:left-0 after:top-0 after:w-full after:h-full after:bg-linear-to-t after:from-neutral-950/70 after:to-transparent">
                                             <div className="absolute bottom-4 left-4 z-10 text-white">
-                                                <h4 className="text-xl font-bold leading-6">
+                                                <img src={event.logo} className={`h-30 mb-5 self-start ${event.logoLight ? 'bg-gray-900 rounded-lg p-2' : ''}`} />
+                                                <h4 className="text-xl font-bold leading-6 mb-1">
                                                     <a href="#">{event.title}</a>
                                                 </h4>
-                                                <p className="font-extralight text-sm relative pl-5">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" className="absolute left-0 top-1/2 -translate-y-1/2 align-text-bottom mr-2" viewBox="0 0 16 16">
-                                                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
-                                                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                                                    </svg>
-                                                    {event.location}
-                                                </p>
+                                                <ul className="font-extralight flex items-center text-sm">
+                                                    <li className="relative">
+                                                        <MapPin strokeWidth={1.5} size={14} className="inline-block" />
+                                                        <span className="align-middle pl-2">{event.location}</span>
+                                                    </li>
+                                                    <li className="pl-5">
+                                                        <Calendar strokeWidth={1.5} size={14} className="inline-block" />
+                                                        <span className="align-middle pl-2">{event.date}</span>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                            <img src={event.logo} alt={event.title} className="w-full object-cover xl:h-[320px] h-full group-hover:scale-105 transition-transform duration-700" />
-                                        </div> */}
+                                            <img src={event.image} alt={event.title} className="w-full object-cover xl:h-[320px] h-full group-hover:scale-105 transition-transform duration-700" />
+                                        </div>
                                         <div className="absolute p-1 right-4 top-4 cursor-pointer rounded-md hover:shadow-[0_0px_7px_rgba(0,0,0,0.15)]" onClick={() => toggleDropdown(event.id)}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                                 <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
@@ -205,38 +213,42 @@ const Event = () => {
                                             </div>
                                             )}
                                         </div>
-                                        <img src={event.logo} className={`h-30 self-start ${event.logoLight ? 'bg-gray-900 rounded-lg p-2' : ''}`} />
-                                        <h3 className="text-xl font-bold mt-5">{event.title}</h3>
-                                        <p className="text-gray-400 text-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="inline-block align-text-bottom mr-1" viewBox="0 0 16 16">
-                                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10"/>
-                                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                                        </svg>
-                                            {event.location}
-                                        </p>
-                                        <div className="my-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="inline-block" viewBox="0 0 16 16">
-                                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
-                                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
-                                            </svg>
-                                            <span className="text-gray-500 align-middle pl-2">{event.date}</span>
-                                        </div>
                                         <div className="flex flex-wrap mt-auto">
-                                            <div className="w-1/2 mb-3 text-blue-950">
-                                                <span className="font-semibold">{event.peak}</span>
-                                                <p className="text-gray-500">Avail on Peak</p>
+                                            <div className="w-1/2 flex mb-3 text-blue-950">
+                                                <span className="bg-blue-200 rounded-sm p-1">
+                                                    <ClipboardCheck strokeWidth={1.5} color="#1e3a8a" className="align-middle inline-block" />
+                                                </span>
+                                                <div className="pl-2 leading-5">
+                                                    <span className="font-semibold">{event.peak}</span>
+                                                    <p className="text-gray-500 text-sm">Avail on Peak</p>
+                                                </div>
                                             </div>
-                                            <div className="w-1/2 mb-3 text-blue-950">
-                                                <span className="font-semibold">{event.nights}</span>
-                                                <p className="text-gray-500">Nights Booked</p>
+                                            <div className="w-1/2 flex mb-3 text-blue-950">
+                                                <span className="bg-blue-200 rounded-sm p-1">
+                                                    <TicketCheck strokeWidth={1.5} color="#1e3a8a" className="align-middle inline-block" />
+                                                </span>
+                                                <div className="pl-2 leading-5">
+                                                    <span className="font-semibold">{event.nights}</span>
+                                                    <p className="text-gray-500 text-sm">Nights Booked</p>
+                                                </div>
                                             </div>
-                                            <div className="w-1/2 mb-3 text-blue-950">
-                                                <span className="font-semibold">{event.ind}</span>
-                                                <p className="text-gray-500">Ind/Group</p>
+                                            <div className="w-1/2 flex mb-3 text-blue-950">
+                                                <span className="bg-blue-200 rounded-sm p-1">
+                                                    <Users strokeWidth={1.5} color="#1e3a8a" className="align-middle inline-block" />
+                                                </span>
+                                                <div className="pl-2 leading-5">
+                                                    <span className="font-semibold">{event.ind}</span>
+                                                    <p className="text-gray-500 text-sm">Ind/Group</p>
+                                                </div>
                                             </div>
-                                            <div className="w-1/2 mb-3 text-blue-950">
-                                                <span className="font-semibold">{event.group}</span>
-                                                <p className="text-gray-500">Group Pickup</p>
+                                            <div className="w-1/2 flex mb-3 text-blue-950">
+                                                <span className="bg-blue-200 rounded-sm p-1">
+                                                    <CalendarArrowUp strokeWidth={1.5} color="#1e3a8a" className="align-middle inline-block" />
+                                                </span>
+                                                <div className="pl-2 leading-5">
+                                                    <span className="font-semibold">{event.group}</span>
+                                                    <p className="text-gray-500 text-sm">Group Pickup</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

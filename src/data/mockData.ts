@@ -1,4 +1,5 @@
-import { Venue, VenueCategory } from '../types';
+import { Venue, VenueCategory, EventVenue } from '../types';
+import { RfpType } from '../components/RfpTable';
 
 export const venues: Venue[] = [
     {
@@ -96,3 +97,97 @@ export const venues: Venue[] = [
 export const getVenues = (): Venue[] => {
     return venues.filter(venue => venue);
 };
+
+export const EventVenues: EventVenue[] = [
+  {
+    id: '1',
+    name: 'The Secret House of Ivy',
+    address: '8140 2nd St',
+    city: 'Downey',
+    state: 'CA',
+    zip: '90241',
+    country: 'US',
+    imageUrl: 'https://images.pexels.com/photos/2291604/pexels-photo-2291604.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    capacity: 100,
+    occupied: 50
+  },
+];
+
+export const getEventVenues = (): EventVenue[] => {
+  return EventVenues.filter(eventVenue => eventVenue);
+};
+
+export const mockRfps: RfpType[] = [
+  {
+    id: '1',
+    hotelName: 'Marriott Downtown',
+    location: 'Chicago, IL',
+    eventName: 'State Basketball Championship',
+    startDate: '2025-03-15',
+    endDate: '2025-03-18',
+    roomsRequested: 45,
+    estimatedValue: 15750,
+    status: 'confirmed',
+    lastUpdated: '2025-01-24T14:22:33'
+  },
+  {
+    id: '2',
+    hotelName: 'Hyatt Regency',
+    location: 'Denver, CO',
+    eventName: 'Regional Soccer Tournament',
+    startDate: '2025-04-10',
+    endDate: '2025-04-14',
+    roomsRequested: 60,
+    estimatedValue: 21600,
+    status: 'pending',
+    lastUpdated: '2025-01-27T09:15:00'
+  },
+  {
+    id: '3',
+    hotelName: 'Hilton Convention Center',
+    location: 'Dallas, TX',
+    eventName: 'Youth Volleyball Invitational',
+    startDate: '2025-05-22',
+    endDate: '2025-05-26',
+    roomsRequested: 75,
+    estimatedValue: 33750,
+    status: 'negotiating',
+    lastUpdated: '2025-01-26T16:48:12'
+  },
+  {
+    id: '4',
+    hotelName: 'Sheraton Waterfront',
+    location: 'Seattle, WA',
+    eventName: 'Swim Conference',
+    startDate: '2025-02-18',
+    endDate: '2025-02-21',
+    roomsRequested: 30,
+    estimatedValue: 10800,
+    status: 'declined',
+    lastUpdated: '2025-01-22T10:33:45'
+  },
+  {
+    id: '5',
+    hotelName: 'Embassy Suites',
+    location: 'Atlanta, GA',
+    eventName: 'Track & Field Championship',
+    startDate: '2025-03-05',
+    endDate: '2025-03-09',
+    roomsRequested: 55,
+    estimatedValue: 22000,
+    status: 'awaiting_info',
+    lastUpdated: '2025-01-28T11:20:18'
+  },
+  {
+    id: '6',
+    hotelName: 'Courtyard by Marriott',
+    location: 'Boston, MA',
+    eventName: 'Hockey Tournament',
+    startDate: '2025-02-28',
+    endDate: '2025-03-04',
+    roomsRequested: 40,
+    estimatedValue: 16000,
+    status: 'pending',
+    lastUpdated: '2025-01-25T14:10:26'
+  }
+]

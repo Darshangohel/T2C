@@ -6,6 +6,7 @@ import SportLogo from "../assets/national-championships.png"
 import VolleyballImg from "../assets/volleyball.jpg"
 import EventHotels from "../components/EventHotels";
 import EventReservations from "../components/EventReservations";
+import EventVenues from "../components/EventVenues";
 
 const EventDetail = () => {
     const [isVisibleFilter, setIsVisibleFilter] = useState(false);
@@ -44,8 +45,8 @@ const EventDetail = () => {
           case "reservations":
             return <EventReservations reservationData={reservationData} />;
           case "venues":
-            return(<h1>Venues</h1>);
-        //     return <EventVenues />;
+            // return(<h1>Venues</h1>);
+            return <EventVenues />;
           default:
             return null;
         }

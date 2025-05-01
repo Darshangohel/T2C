@@ -14,6 +14,19 @@ export interface Venue {
     amenities: string[];
 }
 
+export interface EventVenue {
+    id: string;
+    name: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    country: string;
+    imageUrl: string;
+    capacity: number;
+    occupied: number;
+}
+
 export enum VenueCategory {
     WEDDING = 'Wedding',
     CORPORATE = 'Corporate',
